@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\m\\bankaccountsapp\\contracts\\createaccountcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:contracts\\createaccountcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\m\\bankaccountsapp\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\m\\bankaccountsapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\m\\bankaccountsapp\\bankaccountsapp.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:bankaccountsapp.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CreateAccountContract.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Contracts\\CreateAccountContract.cs",
+              "RelativeDocumentMoniker": "Contracts\\CreateAccountContract.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Contracts\\CreateAccountContract.cs",
+              "RelativeToolTip": "Contracts\\CreateAccountContract.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T10:14:29.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountsController.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Controllers\\AccountsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountsController.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Controllers\\AccountsController.cs",
+              "RelativeToolTip": "Controllers\\AccountsController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBcAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T08:04:01.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T07:57:11.237Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BankAccountsApp.http",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\BankAccountsApp.http",
+              "RelativeDocumentMoniker": "BankAccountsApp.http",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\BankAccountsApp.http",
+              "RelativeToolTip": "BankAccountsApp.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-07-24T07:57:08.202Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

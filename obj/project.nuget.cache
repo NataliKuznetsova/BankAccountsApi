@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "mpu3sB/Jq0E=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Наталия\\Desktop\\m\\BankAccountsApp\\BankAccountsApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Наталия\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.0.0\\fluentvalidation.dependencyinjectionextensions.12.0.0.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.7\\microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\microsoft.extensions.apidescription.server\\9.0.0\\microsoft.extensions.apidescription.server.9.0.0.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\microsoft.openapi\\1.6.23\\microsoft.openapi.1.6.23.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\swashbuckle.aspnetcore\\9.0.3\\swashbuckle.aspnetcore.9.0.3.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\9.0.3\\swashbuckle.aspnetcore.swagger.9.0.3.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\9.0.3\\swashbuckle.aspnetcore.swaggergen.9.0.3.nupkg.sha512",
+    "C:\\Users\\Наталия\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\9.0.3\\swashbuckle.aspnetcore.swaggerui.9.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

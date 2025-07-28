@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BankAccountsApi</name>
+    </assembly>
+    <members>
+        <member name="T:BankAccountsApi.Controllers.AccountsController">
+            <summary>
+            Контроллер для работы со счетами.
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.AccountsController.#ctor(MediatR.IMediator)">
+            <summary>
+            Контроллер для работы со счетами.
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.AccountsController.CreateAccount(BankAccountsApi.Features.Account.Commands.CreateAccountCommand)">
+            <summary>
+            Создание нового счёта
+            </summary>
+            <param name="command">Данные для создания счёта</param>
+            <returns>Возвращает идентификатор созданного счета</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.AccountsController.GetAccountById(System.Guid)">
+            <summary>
+            Получение счёта
+            </summary>
+            <param name="accountId">Id счёта</param>
+            <returns>Счёт клиента</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.AccountsController.DeleteAccount(System.Guid)">
+            <summary>
+            Удаляет счет по идентификатору.
+            </summary>
+            <param name="id">Идентификатор счета</param>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.AccountsController.GetAccounts">
+            <summary>
+            Получить список всех счетов
+            </summary>
+            <returns>Список счетов</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.AccountsController.UpdateAccount(System.Guid,BankAccountsApi.Features.Account.Commands.UpdateAccountCommand)">
+            <summary>
+            Обновление счета
+            </summary>
+            <param name="id">Идентификатор счёта</param>
+            <param name="command">Данные для обновления</param>
+            <returns>204 NoContent</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.AccountsController.HasAccount(System.Guid)">
+            <summary>
+            Проверка на наличие счета
+            </summary>
+            <param name="ownerId">Идентификатор клиента</param>
+            <returns>Результат проверки</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.TransactionsController.Transfer(BankAccountsApi.Features.Transactions.Commands.ExecuteTransferCommand)">
+            <summary>
+            Выполнить перевод между счетами.
+            </summary>
+            <param name="command">Данные перевода</param>
+            <returns>Идентификатор транзакции</returns>
+            <response code="200">Перевод успешно выполнен.</response>
+            <response code="400">Некорректные данные перевода.</response>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.TransactionsController.GetStatement(System.Guid)">
+            <summary>
+            Получить выписку по счёту
+            </summary>
+            <param name="accountId">Идентификатор счета</param>
+            <returns>Выписка</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.TransactionsController.RegisterTransaction(BankAccountsApi.Features.Transactions.Commands.RegisterTransactionCommand)">
+            <summary>
+            Регистрация транзакции по счету
+            </summary>
+            <param name="command">Данные транзакции</param>
+            <returns>Идентификатор транзакции</returns>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Commands.CreateAccountCommand">
+            <summary>
+            Команда для создания нового счета
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Account.Commands.DeleteAccountCommand.Id">
+            <summary>
+            Идентификатор счета
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Commands.UpdateAccountCommand">
+            <summary>
+            Команда для обновления данных счета.
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Dto.AccountDto">
+            <summary>
+            DTO для счёта
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Enums.AccountType">
+            <summary>
+            Тип счёта
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Handlers.CreateAccountHandler">
+            <summary>
+            Хэндлер для создания счета
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Handlers.GetAccountByIdHandler">
+            <summary>
+            Хэндлер для получения информации о счете
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Handlers.GetAccountsHandler">
+            <summary>
+            Получение всех счетов
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Models.Account">
+            <summary>
+            Модель счёта
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Queries.GetAccountByIdQuery">
+            <summary>
+            Запрос на получение инфы о счёте
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Features.Account.Queries.GetAccountByIdQuery.#ctor(System.Guid)">
+            <summary>
+            Запрос на получение инфы о счёте
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Queries.GetAccountsQuery">
+            <summary>
+            Запрос на получение списка всех счетов
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Queries.HasAccountByOwnerIdQuery">
+            <summary>
+            Проверка наличия счета по owner id
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Features.Account.Queries.HasAccountByOwnerIdQuery.#ctor(System.Guid)">
+            <summary>
+            Проверка наличия счета по owner id
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Validators.CreateAccountValidator">
+            <summary>
+            Валидатор для CreateAccountCommand
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Transactions.Commands.ExecuteTransferCommand">
+            <summary>
+            Перевод между счетами
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Transactions.Commands.ExecuteTransferCommand.FromAccountId">
+            <summary>
+            Счёт отправителя
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Transactions.Commands.ExecuteTransferCommand.ToAccountId">
+            <summary>
+            Счёт получателя
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Transactions.Commands.ExecuteTransferCommand.Amount">
+            <summary>
+            Сумма
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Transactions.Commands.ExecuteTransferCommand.Currency">
+            <summary>
+            Валюта
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Transactions.Commands.ExecuteTransferCommand.Description">
+            <summary>
+            Описание
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Transactions.Commands.RegisterTransactionCommand">
+            <summary>
+            Регистрация транзакции
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Transactions.Dto.StatementDto">
+            <summary>
+            Выписка по счету
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Transactions.Dto.StatementDto.AccountId">
+            <summary>
+            Идентификатор счета
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Transactions.Dto.StatementDto.Transactions">
+            <summary>
+            Список транзакций
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Transactions.Enums.TransactionType">
+            <summary>
+            Тип транзакции
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Transactions.Models.Transaction">
+            <summary>
+            Модель транзакции
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Transactions.Validators.ExecuteTransferValidator">
+            <summary>
+            Валидация перевода денег
+            </summary>
+        </member>
+    </members>
+</doc>
