@@ -1,17 +1,15 @@
-﻿using BankAccountsApi.Features.Account.Dto;
-using BankAccountsApi.Features.Account.Queries;
-using BankAccountsApi.Storage;
+﻿using BankAccountsApi.Features.Account.Queries;
+using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Storage.Interfaces;
 using MediatR;
 
 namespace BankAccountsApi.Features.Account.Handlers;
 
-public class HasAccountByOwnerIdHandler: IRequestHandler<HasAccountByOwnerIdQuery, bool>
+public class HasAccountByOwnerIdHandler(IInMemoryAccountStorage storage): IRequestHandler<HasAccountByOwnerIdQuery, MbResult<bool>>
 {
-    public Task<bool> Handle(HasAccountByOwnerIdQuery request, CancellationToken cancellationToken)
+    public Task<MbResult<bool>> Handle(HasAccountByOwnerIdQuery request, CancellationToken cancellationToken)
     {
-        var account = InMemoryDatabase.Accounts
-            .Any(x => x.OwnerId  == request.OwnerId);
-
-        return Task.FromResult(account);
+        var accounts = storage.GetByOwnerId(request.OwnerId);
+        return Task.FromResult(MbResult<bool>.Success(accounts.Count != 0));
     }
 }

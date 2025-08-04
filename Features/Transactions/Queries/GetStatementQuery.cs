@@ -1,9 +1,10 @@
-﻿using BankAccountsApi.Features.Transactions.Dto;
+﻿using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Models;
 using MediatR;
 
 namespace BankAccountsApi.Features.Transactions.Queries;
 
-public class GetStatementQuery(Guid accountId) : IRequest<StatementDto>
+public class GetStatementQuery(Guid accountId) : IRequest<MbResult<List<Transaction>>>
 {
     public Guid AccountId { get; set; } = accountId;
 }

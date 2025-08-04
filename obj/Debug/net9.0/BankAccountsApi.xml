@@ -34,10 +34,11 @@
             </summary>
             <param name="id">Идентификатор счета</param>
         </member>
-        <member name="M:BankAccountsApi.Controllers.AccountsController.GetAccounts">
+        <member name="M:BankAccountsApi.Controllers.AccountsController.GetAccounts(System.Guid)">
             <summary>
             Получить список всех счетов
             </summary>
+            <param name="ownerId">Идентификатор пользователя</param>
             <returns>Список счетов</returns>
         </member>
         <member name="M:BankAccountsApi.Controllers.AccountsController.UpdateAccount(System.Guid,BankAccountsApi.Features.Account.Commands.UpdateAccountCommand)">
@@ -55,12 +56,68 @@
             <param name="ownerId">Идентификатор клиента</param>
             <returns>Результат проверки</returns>
         </member>
+        <member name="T:BankAccountsApi.Controllers.ClientsController">
+            <summary>
+            Контроллер для работы с клиентами
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.ClientsController.#ctor(MediatR.IMediator)">
+            <summary>
+            Контроллер для работы с клиентами
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.ClientsController.CheckClientExists(System.Guid)">
+            <summary>
+            Проверить, существует ли клиент с указанным Id
+            </summary>
+            <param name="id">Идентификатор клиента</param>
+            <returns>True, если клиент существует, иначе False</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.ClientsController.CreateClient(BankAccountsApi.Features.Clients.Commands.CreateClientCommand)">
+            <summary>
+            Создать нового клиента
+            </summary>
+            <param name="command">Данные для создания клиента</param>
+            <returns>Идентификатор нового клиента</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.ClientsController.GetClientById(System.Guid)">
+            <summary>
+            Получить клиента по Id
+            </summary>
+            <param name="id">Идентификатор клиента</param>
+            <returns>Данные клиента</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.ClientsController.UpdateClient(System.Guid,BankAccountsApi.Features.Clients.Commands.UpdateClientCommand)">
+            <summary>
+            Обновить клиента
+            </summary>
+            <param name="id">Идентификатор клиента</param>
+            <param name="command">Данные для обновления</param>
+            <returns>204 NoContent или ошибка</returns>
+        </member>
+        <member name="T:BankAccountsApi.Controllers.CurrencyController">
+            <summary>
+            Контроллер для работы с валютами
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.CurrencyController.#ctor(MediatR.IMediator)">
+            <summary>
+            Контроллер для работы с валютами
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.CurrencyController.CheckExists(System.String)">
+            <summary>
+            Проверить, поддерживается ли валюта по коду ISO 4217
+            </summary>
+            <param name="code">Код валюты в формате ISO 4217</param>
+            <returns>Возвращает true, если валюта поддерживается, иначе false</returns>
+        </member>
         <member name="M:BankAccountsApi.Controllers.TransactionsController.Transfer(BankAccountsApi.Features.Transactions.Commands.ExecuteTransferCommand)">
             <summary>
-            Выполнить перевод между счетами.
+            Выполнить перевод между счетами
             </summary>
             <param name="command">Данные перевода</param>
-            <returns>Идентификатор транзакции</returns>
+            <returns>Код респонса</returns>
             <response code="200">Перевод успешно выполнен.</response>
             <response code="400">Некорректные данные перевода.</response>
         </member>
@@ -93,11 +150,6 @@
             Команда для обновления данных счета.
             </summary>
         </member>
-        <member name="T:BankAccountsApi.Features.Account.Dto.AccountDto">
-            <summary>
-            DTO для счёта
-            </summary>
-        </member>
         <member name="T:BankAccountsApi.Features.Account.Enums.AccountType">
             <summary>
             Тип счёта
@@ -108,19 +160,29 @@
             Хэндлер для создания счета
             </summary>
         </member>
+        <member name="M:BankAccountsApi.Features.Account.Handlers.CreateAccountHandler.#ctor(BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage,BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage)">
+            <summary>
+            Хэндлер для создания счета
+            </summary>
+        </member>
         <member name="T:BankAccountsApi.Features.Account.Handlers.GetAccountByIdHandler">
             <summary>
             Хэндлер для получения информации о счете
             </summary>
         </member>
-        <member name="T:BankAccountsApi.Features.Account.Handlers.GetAccountsHandler">
+        <member name="M:BankAccountsApi.Features.Account.Handlers.GetAccountByIdHandler.#ctor(BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage)">
             <summary>
-            Получение всех счетов
+            Хэндлер для получения информации о счете
             </summary>
         </member>
-        <member name="T:BankAccountsApi.Features.Account.Models.Account">
+        <member name="T:BankAccountsApi.Features.Account.Handlers.GetAccountsByOwnerIdHandler">
             <summary>
-            Модель счёта
+            Получение счетов пользователя
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Features.Account.Handlers.GetAccountsByOwnerIdHandler.#ctor(BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage)">
+            <summary>
+            Получение счетов пользователя
             </summary>
         </member>
         <member name="T:BankAccountsApi.Features.Account.Queries.GetAccountByIdQuery">
@@ -151,6 +213,66 @@
         <member name="T:BankAccountsApi.Features.Account.Validators.CreateAccountValidator">
             <summary>
             Валидатор для CreateAccountCommand
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Clients.Commands.CreateClientCommand">
+            <summary>
+            Команда для создания нового клиента
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Clients.Commands.CreateClientCommand.Name">
+            <summary>
+            Имя
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Clients.Commands.CreateClientCommand.LastName">
+            <summary>
+            Фамилия
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Clients.Commands.UpdateClientCommand.Name">
+            <summary>
+            Имя
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Clients.Commands.UpdateClientCommand.LastName">
+            <summary>
+            Фамилия
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Clients.Handlers.CheckClientExistsHandler">
+            <summary>
+            Запрос проверки клиента
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Features.Clients.Handlers.CheckClientExistsHandler.#ctor(BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage)">
+            <summary>
+            Запрос проверки клиента
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Clients.Queries.CheckClientExistsQuery">
+            <summary>
+            Запрос на проверку существования клиента
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Features.Clients.Queries.CheckClientExistsQuery.#ctor(System.Guid)">
+            <summary>
+            Запрос на проверку существования клиента
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Clients.Queries.GetClientByIdQuery">
+            <summary>
+            Запрос на получение клиента по идентификатору
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Features.Clients.Queries.GetClientByIdQuery.#ctor(System.Guid)">
+            <summary>
+            Запрос на получение клиента по идентификатору
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Clients.Queries.GetClientByIdQuery.Id">
+            <summary>
+            Идентификатор клиента
             </summary>
         </member>
         <member name="T:BankAccountsApi.Features.Transactions.Commands.ExecuteTransferCommand">
@@ -188,34 +310,141 @@
             Регистрация транзакции
             </summary>
         </member>
-        <member name="T:BankAccountsApi.Features.Transactions.Dto.StatementDto">
-            <summary>
-            Выписка по счету
-            </summary>
-        </member>
-        <member name="P:BankAccountsApi.Features.Transactions.Dto.StatementDto.AccountId">
-            <summary>
-            Идентификатор счета
-            </summary>
-        </member>
-        <member name="P:BankAccountsApi.Features.Transactions.Dto.StatementDto.Transactions">
-            <summary>
-            Список транзакций
-            </summary>
-        </member>
         <member name="T:BankAccountsApi.Features.Transactions.Enums.TransactionType">
             <summary>
             Тип транзакции
             </summary>
         </member>
-        <member name="T:BankAccountsApi.Features.Transactions.Models.Transaction">
-            <summary>
-            Модель транзакции
-            </summary>
-        </member>
         <member name="T:BankAccountsApi.Features.Transactions.Validators.ExecuteTransferValidator">
             <summary>
             Валидация перевода денег
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Infrastructure.MbError">
+            <summary>
+            Ошибка
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Infrastructure.MbError.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Ошибка
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Infrastructure.MbError.Code">
+            <summary>
+            Код ошибки
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Infrastructure.MbError.Field">
+            <summary>
+            Поле с ошибкой
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Infrastructure.MbError.Message">
+            <summary>
+            Сообщение
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Infrastructure.MbResult`1">
+            <summary>
+            Результат выполнения операции
+            </summary>
+            <typeparam name="T">Тип возвращаемого значения</typeparam>
+        </member>
+        <member name="T:BankAccountsApi.Models.Account">
+            <summary>
+            Модель счёта
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Models.Client.Id">
+            <summary>
+            Идентификатор клиента
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Models.Statement">
+            <summary>
+            Выписка по счету
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Models.Statement.AccountId">
+            <summary>
+            Идентификатор счета
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Models.Statement.Transactions">
+            <summary>
+            Список транзакций
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage">
+            <summary>
+            Хранилище для работы со счетами
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.Create(BankAccountsApi.Models.Account)">
+            <summary>
+            Добавить новый счёт
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.GetById(System.Guid)">
+            <summary>
+            Получить счёт по идентификатору
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.GetByOwnerId(System.Guid)">
+            <summary>
+            Получить все счета пользователя
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.Update(BankAccountsApi.Models.Account)">
+            <summary>
+            Обновить существующий счёт
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.Delete(System.Guid)">
+            <summary>
+            Удалить счёт по идентификатору
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage">
+            <summary>
+            Интерфейс для хранилища клиентов
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage.Add(BankAccountsApi.Models.Client)">
+            <summary>
+            Добавить клиента
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage.Exists(System.Guid)">
+            <summary>
+            Проверить существование клиента по идентификатору
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage.Get(System.Guid)">
+            <summary>
+            Получить клиента по идентификатору
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage.Update(BankAccountsApi.Models.Client)">
+            <summary>
+            Обновление инфы клиента
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryCurrencyStorage.Exists(System.String)">
+            <summary>
+            Проверяет, поддерживается ли валюта
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryTransactionStorage.GetByAccountId(System.Guid)">
+            <summary>
+            Получить все транзакции по счёту
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryTransactionStorage.Add(BankAccountsApi.Models.Transaction)">
+            <summary>
+            Добавить новую транзакцию
             </summary>
         </member>
     </members>

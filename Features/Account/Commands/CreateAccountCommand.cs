@@ -1,4 +1,5 @@
 ﻿using BankAccountsApi.Features.Account.Enums;
+using BankAccountsApi.Infrastructure;
 using MediatR;
 
 namespace BankAccountsApi.Features.Account.Commands;
@@ -6,7 +7,7 @@ namespace BankAccountsApi.Features.Account.Commands;
 /// <summary>
 /// Команда для создания нового счета
 /// </summary>
-public class CreateAccountCommand : IRequest<Guid>
+public class CreateAccountCommand : IRequest<MbResult<Guid>>
 {
     public Guid OwnerId { get; set; }
     

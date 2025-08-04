@@ -1,16 +1,17 @@
 ﻿using MediatR;
-using System;
+using BankAccountsApi.Features.Account.Enums;
+using BankAccountsApi.Infrastructure;
 
 namespace BankAccountsApi.Features.Account.Commands
 {
     /// <summary>
     /// Команда для обновления данных счета.
     /// </summary>
-    public class UpdateAccountCommand : IRequest
+    public class UpdateAccountCommand : IRequest<MbResult<Unit>>
     {
-        public Guid? Id { get; set; }
+        public Guid Id { get; set; }
 
-        public string Type { get; set; } = string.Empty;
+        public AccountType Type { get; set; }
 
         public string Currency { get; set; } = string.Empty;
 

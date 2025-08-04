@@ -1,9 +1,9 @@
-﻿namespace BankAccountsApi.Features.Transactions.Dto;
+﻿namespace BankAccountsApi.Models;
 
 /// <summary>
 /// Выписка по счету
 /// </summary>
-public class StatementDto
+public class Statement
 {
     /// <summary>
     /// Идентификатор счета
@@ -13,6 +13,6 @@ public class StatementDto
     /// <summary>
     /// Список транзакций
     /// </summary>
-    public List<TransactionDto> Transactions { get; set; } = [];
+    public List<Transaction> Transactions { get; set; } = [];
     
 }

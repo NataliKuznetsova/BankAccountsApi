@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "Contracts\\CreateAccountContract.cs",
               "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Contracts\\CreateAccountContract.cs",
               "RelativeToolTip": "Contracts\\CreateAccountContract.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-24T10:14:29.827Z",
               "EditorCaption": ""
@@ -51,8 +51,7 @@
               "RelativeToolTip": "Controllers\\AccountsController.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwBcAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T08:04:01.258Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T08:04:01.258Z"
             },
             {
               "$type": "Document",

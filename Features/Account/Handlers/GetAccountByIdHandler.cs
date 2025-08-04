@@ -1,6 +1,6 @@
-﻿using BankAccountsApi.Features.Account.Dto;
-using BankAccountsApi.Features.Account.Queries;
-using BankAccountsApi.Storage;
+﻿using BankAccountsApi.Features.Account.Queries;
+using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Storage.Interfaces;
 using MediatR;
 
 namespace BankAccountsApi.Features.Account.Handlers;
@@ -8,13 +8,15 @@ namespace BankAccountsApi.Features.Account.Handlers;
 /// <summary>
 /// Хэндлер для получения информации о счете
 /// </summary>
-public class GetAccountByIdHandler : IRequestHandler<GetAccountByIdQuery, AccountDto>
+public class GetAccountByIdHandler(IInMemoryAccountStorage storage) : IRequestHandler<GetAccountByIdQuery, MbResult<Models.Account>>
 {
-    public Task<AccountDto> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
+    public Task<MbResult<Models.Account>> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
     {
-        var account = InMemoryDatabase.Accounts
-            .FirstOrDefault(x => x.Id == request.Id);
-
-        return Task.FromResult(account ?? new AccountDto());
+        var account = storage.GetById(request.Id);
+        if (account == null)
+        {
+            return Task.FromResult(MbResult<Models.Account>.Failure(MbError.NotFound("Клиент не найден")));
+        }
+        return Task.FromResult(MbResult<Models.Account>.Success(account));
     }
 }
