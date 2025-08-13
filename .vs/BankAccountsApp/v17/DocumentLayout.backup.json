@@ -1,21 +1,73 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\",
+  "WorkspaceRootPath": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\m\\bankaccountsapp\\contracts\\createaccountcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:contracts\\createaccountcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\m\\bankaccountsapp\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}|BankAccountsApi.Tests\\BankAccountsApi.Tests\\BankAccountsApi.Tests.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\bankaccountsapi.tests\\bankaccountsapi.tests\\integration\\paralleltransfertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}|BankAccountsApi.Tests\\BankAccountsApi.Tests\\BankAccountsApi.Tests.csproj|solutionrelative:bankaccountsapi.tests\\bankaccountsapi.tests\\integration\\paralleltransfertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\m\\bankaccountsapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}|BankAccountsApi.Tests\\BankAccountsApi.Tests\\BankAccountsApi.Tests.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\bankaccountsapi.tests\\bankaccountsapi.tests\\appsettings.test.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}|BankAccountsApi.Tests\\BankAccountsApi.Tests\\BankAccountsApi.Tests.csproj|solutionrelative:bankaccountsapi.tests\\bankaccountsapi.tests\\appsettings.test.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\app\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:app\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\m\\bankaccountsapp\\bankaccountsapp.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\behaviors\\authenticationhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:behaviors\\authenticationhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\controllers\\clientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:controllers\\clientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\controllers\\currencycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:controllers\\currencycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\infrastructure\\mbcontrollerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:infrastructure\\mbcontrollerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}|BankAccountsApi.Tests\\BankAccountsApi.Tests\\BankAccountsApi.Tests.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\bankaccountsapi.tests\\bankaccountsapi.tests\\unit\\createaccounthandlertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}|BankAccountsApi.Tests\\BankAccountsApi.Tests\\BankAccountsApi.Tests.csproj|solutionrelative:bankaccountsapi.tests\\bankaccountsapi.tests\\unit\\createaccounthandlertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\keycloak\\realm-export.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:keycloak\\realm-export.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|c:\\users\\\u043D\u0430\u0442\u0430\u043B\u0438\u044F\\desktop\\bankaccountsapp\\bankaccountsapp.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}|BankAccountsApi.csproj|solutionrelative:bankaccountsapp.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     }
   ],
@@ -26,56 +78,221 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 16,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateAccountContract.cs",
-              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Contracts\\CreateAccountContract.cs",
-              "RelativeDocumentMoniker": "Contracts\\CreateAccountContract.cs",
-              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Contracts\\CreateAccountContract.cs",
-              "RelativeToolTip": "Contracts\\CreateAccountContract.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T10:14:29.827Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AccountsController.cs",
-              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Controllers\\AccountsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AccountsController.cs",
-              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Controllers\\AccountsController.cs",
-              "RelativeToolTip": "Controllers\\AccountsController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBcAAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T08:04:01.258Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T07:57:11.237Z"
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "appsettings.Test.json",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\BankAccountsApi.Tests\\BankAccountsApi.Tests\\appsettings.Test.json",
+              "RelativeDocumentMoniker": "BankAccountsApi.Tests\\BankAccountsApi.Tests\\appsettings.Test.json",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\BankAccountsApi.Tests\\BankAccountsApi.Tests\\appsettings.Test.json",
+              "RelativeToolTip": "BankAccountsApi.Tests\\BankAccountsApi.Tests\\appsettings.Test.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-13T08:25:47.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ValidationBehavior.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Behaviors\\ValidationBehavior.cs",
+              "RelativeDocumentMoniker": "Behaviors\\ValidationBehavior.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Behaviors\\ValidationBehavior.cs",
+              "RelativeToolTip": "Behaviors\\ValidationBehavior.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:18:01.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthenticationHandler.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Behaviors\\AuthenticationHandler.cs",
+              "RelativeDocumentMoniker": "Behaviors\\AuthenticationHandler.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Behaviors\\AuthenticationHandler.cs",
+              "RelativeToolTip": "Behaviors\\AuthenticationHandler.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:04:03.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ClientsController.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Controllers\\ClientsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClientsController.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Controllers\\ClientsController.cs",
+              "RelativeToolTip": "Controllers\\ClientsController.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAiwEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T06:02:36.339Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MbControllerBase.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Infrastructure\\MbControllerBase.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\MbControllerBase.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Infrastructure\\MbControllerBase.cs",
+              "RelativeToolTip": "Infrastructure\\MbControllerBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T18:56:11.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CreateAccountHandlerTests.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\BankAccountsApi.Tests\\BankAccountsApi.Tests\\Unit\\CreateAccountHandlerTests.cs",
+              "RelativeDocumentMoniker": "BankAccountsApi.Tests\\BankAccountsApi.Tests\\Unit\\CreateAccountHandlerTests.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\BankAccountsApi.Tests\\BankAccountsApi.Tests\\Unit\\CreateAccountHandlerTests.cs",
+              "RelativeToolTip": "BankAccountsApi.Tests\\BankAccountsApi.Tests\\Unit\\CreateAccountHandlerTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T05:14:26.91Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CurrencyController.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Controllers\\CurrencyController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CurrencyController.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Controllers\\CurrencyController.cs",
+              "RelativeToolTip": "Controllers\\CurrencyController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T20:48:49.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AccountsController.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Controllers\\AccountsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountsController.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Controllers\\AccountsController.cs",
+              "RelativeToolTip": "Controllers\\AccountsController.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAwBAAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T20:48:43.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAUwHsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T18:51:50.625Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "BankAccountsApp.http",
-              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\BankAccountsApp.http",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\BankAccountsApp.http",
               "RelativeDocumentMoniker": "BankAccountsApp.http",
-              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\m\\BankAccountsApp\\BankAccountsApp.http",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\BankAccountsApp.http",
               "RelativeToolTip": "BankAccountsApp.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-07-24T07:57:08.202Z"
+              "WhenOpened": "2025-08-12T18:51:46.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "realm-export.json",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\keycloak\\realm-export.json",
+              "RelativeDocumentMoniker": "keycloak\\realm-export.json",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\keycloak\\realm-export.json",
+              "RelativeToolTip": "keycloak\\realm-export.json",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-12T18:51:42.462Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\app\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "app\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\app\\appsettings.Development.json",
+              "RelativeToolTip": "app\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAD4vwoAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-12T18:51:37.855Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-08-12T18:49:35.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAABAAAAAAAAAAAAAMwBkAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-08-12T18:48:05.579Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\docker-compose.yml",
+              "RelativeDocumentMoniker": "docker-compose.yml",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\docker-compose.yml",
+              "RelativeToolTip": "docker-compose.yml",
+              "ViewState": "AgIAACIAAAAAAAAAAAAowDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-08-12T18:46:43.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\app\\appsettings.json",
+              "RelativeDocumentMoniker": "app\\appsettings.json",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\app\\appsettings.json",
+              "RelativeToolTip": "app\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-12T18:43:30.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ParallelTransferTests.cs",
+              "DocumentMoniker": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\BankAccountsApi.Tests\\BankAccountsApi.Tests\\Integration\\ParallelTransferTests.cs",
+              "RelativeDocumentMoniker": "BankAccountsApi.Tests\\BankAccountsApi.Tests\\Integration\\ParallelTransferTests.cs",
+              "ToolTip": "C:\\Users\\\u041D\u0430\u0442\u0430\u043B\u0438\u044F\\Desktop\\BankAccountsApp\\BankAccountsApi.Tests\\BankAccountsApi.Tests\\Integration\\ParallelTransferTests.cs",
+              "RelativeToolTip": "BankAccountsApi.Tests\\BankAccountsApi.Tests\\Integration\\ParallelTransferTests.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAIwCIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T18:43:35.232Z",
+              "EditorCaption": ""
             }
           ]
         }

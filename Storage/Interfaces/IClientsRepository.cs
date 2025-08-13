@@ -3,28 +3,27 @@
 namespace BankAccountsApi.Storage.Interfaces;
 
 /// <summary>
-/// Интерфейс для хранилища клиентов
+/// Хранилище для работы с клиентами
 /// </summary>
-public interface IInMemoryClientStorage
+public interface IClientsRepository
 {
     /// <summary>
     /// Добавить клиента
     /// </summary>
-    void Add(Client client);
+    Task AddAsync(Client client);
 
     /// <summary>
     /// Проверить существование клиента по идентификатору
     /// </summary>
-    bool Exists(Guid clientId);
+    Task<bool> ExistsAsync(Guid clientId);
 
     /// <summary>
     /// Получить клиента по идентификатору
     /// </summary>
-    Client? Get(Guid clientId);
-    
+    Task<Client?> GetByIdAsync(Guid clientId);
+
     /// <summary>
-    /// Обновление инфы клиента
+    /// Обновить информацию о клиенте
     /// </summary>
-    /// <param name="client"></param>
-    void Update(Client client);
+    Task UpdateAsync(Client client);
 }

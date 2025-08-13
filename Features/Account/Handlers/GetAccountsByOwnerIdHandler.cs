@@ -8,11 +8,18 @@ namespace BankAccountsApi.Features.Account.Handlers;
 /// <summary>
 /// Получение счетов пользователя
 /// </summary>
-public class GetAccountsByOwnerIdHandler(IInMemoryAccountStorage storage) : IRequestHandler<GetAccountsQuery, MbResult<List<BankAccountsApi.Models.Account>>>
+public class GetAccountsByOwnerIdHandler : IRequestHandler<GetAccountsQuery, MbResult<List<Models.Account>>>
 {
-    public Task<MbResult<List<BankAccountsApi.Models.Account>>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
+    private readonly IAccountsRepository _storage;
+
+    public GetAccountsByOwnerIdHandler(IAccountsRepository storage)
     {
-        var accounts = storage.GetByOwnerId(request.OwnerId);
-        return Task.FromResult(MbResult<List<BankAccountsApi.Models.Account>>.Success(accounts));
+        _storage = storage;
+    }
+
+    public async Task<MbResult<List<BankAccountsApi.Models.Account>>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
+    {
+        var accounts = await _storage.GetByOwnerIdAsync(request.OwnerId);
+        return MbResult<List<Models.Account>>.Success(accounts);
     }
 }

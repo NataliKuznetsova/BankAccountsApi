@@ -1,4 +1,5 @@
-﻿using BankAccountsApi.Features.Transactions.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using BankAccountsApi.Features.Transactions.Enums;
 
 namespace BankAccountsApi.Models;
 
@@ -10,10 +11,12 @@ public class Transaction
 
     public decimal Amount { get; set; }
 
-    public string Currency { get; set; } = string.Empty;
+    [StringLength(3)]
+    public required string Currency { get; set; }
 
     public TransactionType Type { get; set; }
 
+    [StringLength(150)]
     public string? Description { get; set; }
 
     public DateTime Date { get; set; }

@@ -5,11 +5,19 @@ using MediatR;
 
 namespace BankAccountsApi.Features.Account.Handlers;
 
-public class HasAccountByOwnerIdHandler(IInMemoryAccountStorage storage): IRequestHandler<HasAccountByOwnerIdQuery, MbResult<bool>>
+public class HasAccountByOwnerIdHandler : IRequestHandler<HasAccountByOwnerIdQuery, MbResult<bool>>
 {
-    public Task<MbResult<bool>> Handle(HasAccountByOwnerIdQuery request, CancellationToken cancellationToken)
+    private readonly IAccountsRepository _storage;
+
+    public HasAccountByOwnerIdHandler(IAccountsRepository storage)
     {
-        var accounts = storage.GetByOwnerId(request.OwnerId);
-        return Task.FromResult(MbResult<bool>.Success(accounts.Count != 0));
+        _storage = storage;
+    }
+
+    public async Task<MbResult<bool>> Handle(HasAccountByOwnerIdQuery request, CancellationToken cancellationToken)
+    {
+        var accounts = await _storage.GetByOwnerIdAsync(request.OwnerId);
+        bool hasAccounts = accounts.Count != 0;
+        return MbResult<bool>.Success(hasAccounts);
     }
 }

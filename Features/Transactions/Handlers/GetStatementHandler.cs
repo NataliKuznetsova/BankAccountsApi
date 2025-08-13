@@ -6,11 +6,18 @@ using MediatR;
 
 namespace BankAccountsApi.Features.Transactions.Handlers;
 
-public class GetStatementHandler(IInMemoryTransactionStorage memoryTransactionStorage) : IRequestHandler<GetStatementQuery, MbResult<List<Transaction>>>
+public class GetStatementHandler : IRequestHandler<GetStatementQuery, MbResult<List<Transaction>>>
 {
-    public Task<MbResult<List<Transaction>>> Handle(GetStatementQuery request, CancellationToken cancellationToken)
+    private readonly ITransactionsRepository _transactionStorage;
+
+    public GetStatementHandler(ITransactionsRepository transactionStorage)
     {
-        var statement = memoryTransactionStorage.GetByAccountId(request.AccountId);
-        return Task.FromResult(MbResult<List<Transaction>>.Success(statement));
+        _transactionStorage = transactionStorage;
+    }
+
+    public async Task<MbResult<List<Transaction>>> Handle(GetStatementQuery request, CancellationToken cancellationToken)
+    {
+        var statement = await _transactionStorage.GetByAccountIdAsync(request.AccountId);
+        return MbResult<List<Transaction>>.Success(statement);
     }
 }

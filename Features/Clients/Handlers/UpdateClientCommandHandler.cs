@@ -6,13 +6,13 @@ using MediatR;
 
 namespace BankAccountsApi.Features.Clients.Handlers;
 
-public class UpdateClientCommandHandler(IInMemoryClientStorage storage) : IRequestHandler<UpdateClientCommand, MbResult<Unit>>
+public class UpdateClientCommandHandler(IClientsRepository storage) : IRequestHandler<UpdateClientCommand, MbResult<Unit>>
 {
-    public Task<MbResult<Unit>> Handle(UpdateClientCommand request, CancellationToken cancellationToken)
+    public async Task<MbResult<Unit>> Handle(UpdateClientCommand request, CancellationToken cancellationToken)
     {
-        var existingClient = storage.Get(request.Id);
+        var existingClient = await storage.GetByIdAsync(request.Id);
         if (existingClient == null)
-            return Task.FromResult(MbResult.Failure(MbError.NotFound($"Клиент с Id {request.Id} не найден")));
+            return MbResult.Failure(MbError.NotFound($"Клиент с Id {request.Id} не найден"));
 
         var updatedClient = new Client
         {
@@ -21,8 +21,8 @@ public class UpdateClientCommandHandler(IInMemoryClientStorage storage) : IReque
             LastName = request.LastName
         };
 
-        storage.Update(updatedClient);
+        await storage.UpdateAsync(updatedClient);
 
-        return Task.FromResult(MbResult.Success());
+        return MbResult.Success();
     }
 }

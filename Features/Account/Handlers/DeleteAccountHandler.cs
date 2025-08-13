@@ -5,19 +5,17 @@ using MediatR;
 
 namespace BankAccountsApi.Features.Account.Handlers;
 
-public class DeleteAccountHandle(IInMemoryAccountStorage storage) : IRequestHandler<DeleteAccountCommand, MbResult<Unit>>
+public class DeleteAccountHandle(IAccountsRepository storage) : IRequestHandler<DeleteAccountCommand, MbResult<Unit>>
 {
-    public Task<MbResult<Unit>> Handle(DeleteAccountCommand request, CancellationToken cancellationToken)
+    public async Task<MbResult<Unit>> Handle(DeleteAccountCommand request, CancellationToken cancellationToken)
     {
-        var account = storage.GetById(request.Id);
+        var account = await storage.GetByIdAsync(request.Id);
         if (account == null)
         {
-            return Task.FromResult(
-                MbResult<Unit>.Failure(
-                    MbError.NotFound("Данный счет не найден")
-                ));
+            return MbResult<Unit>.Failure(
+                    MbError.NotFound("Данный счет не найден"));
         }
-        storage.Delete(request.Id);
-        return Task.FromResult(MbResult.Success());
+        await storage.DeleteAsync(request.Id);
+        return MbResult.Success();
     }
 }

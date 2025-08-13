@@ -1,7 +1,11 @@
-﻿namespace BankAccountsApi.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BankAccountsApi.Models;
 
 public class Currency
 {
-    public string Code { get; set; } = null!;
-    public string Name { get; set; } = null!;
+    [StringLength(3)]
+    public required string Code { get; set; }
+    [StringLength(150)]
+    public required string Name { get; set; }
 }

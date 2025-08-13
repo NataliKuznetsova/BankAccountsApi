@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36301.6 d17.14
+VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountsApi", "BankAccountsApi.csproj", "{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountsApi.Tests", "BankAccountsApi.Tests\BankAccountsApi.Tests\BankAccountsApi.Tests.csproj", "{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13C6A2A2-0A81-4B63-BA2B-976EF0462B76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7DD10F6-7CFA-4AC5-859F-2DE6407AC948}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

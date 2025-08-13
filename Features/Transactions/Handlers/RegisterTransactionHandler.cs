@@ -6,9 +6,16 @@ using MediatR;
 
 namespace BankAccountsApi.Features.Transactions.Handlers;
 
-public class RegisterTransactionHandler(IInMemoryTransactionStorage memoryTransactionStorage) : IRequestHandler<RegisterTransactionCommand, MbResult<Guid>>
+public class RegisterTransactionHandler : IRequestHandler<RegisterTransactionCommand, MbResult<Guid>>
 {
-    public Task<MbResult<Guid>> Handle(RegisterTransactionCommand request, CancellationToken cancellationToken)
+    private readonly ITransactionsRepository _transactionStorage;
+
+    public RegisterTransactionHandler(ITransactionsRepository transactionStorage)
+    {
+        _transactionStorage = transactionStorage;
+    }
+
+    public async Task<MbResult<Guid>> Handle(RegisterTransactionCommand request, CancellationToken cancellationToken)
     {
         var transaction = new Transaction
         {
@@ -20,8 +27,8 @@ public class RegisterTransactionHandler(IInMemoryTransactionStorage memoryTransa
             Date = DateTime.UtcNow
         };
 
-        memoryTransactionStorage.Add(transaction);
+        await _transactionStorage.AddAsync(transaction);
 
-        return Task.FromResult(MbResult<Guid>.Success(transaction.Id));
+        return MbResult<Guid>.Success(transaction.Id);
     }
 }

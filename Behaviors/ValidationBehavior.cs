@@ -35,7 +35,6 @@ public class ValidationBehavior<TRequest, TResponse>(
 
         var error = new MbError(ErrorCodes.ValidationFailed, message);
 
-        // Если TResponse — это MbResult<T>, вернём Failure
         if (typeof(TResponse).IsGenericType &&
             typeof(TResponse).GetGenericTypeDefinition() == typeof(MbResult<>))
         {
@@ -49,7 +48,6 @@ public class ValidationBehavior<TRequest, TResponse>(
                 return (TResponse)method.Invoke(null, [error.Code, error.Message])!;
         }
 
-        // Иначе пробрасываем исключение
         throw new ValidationException(errors);
     }
 }

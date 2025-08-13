@@ -6,9 +6,9 @@ using MediatR;
 
 namespace BankAccountsApi.Features.Clients.Handlers;
 
-public class CreateClientHandler(IInMemoryClientStorage clientStorage) : IRequestHandler<CreateClientCommand, MbResult<Guid>>
+public class CreateClientHandler(IClientsRepository clientStorage) : IRequestHandler<CreateClientCommand, MbResult<Guid>>
 {
-    public Task<MbResult<Guid>> Handle(CreateClientCommand request, CancellationToken cancellationToken)
+    public async Task<MbResult<Guid>> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
         var client = new Client
         {
@@ -17,7 +17,7 @@ public class CreateClientHandler(IInMemoryClientStorage clientStorage) : IReques
             LastName = request.LastName
         };
 
-        clientStorage.Add(client);
-        return Task.FromResult(MbResult<Guid>.Success(client.Id));
+        await clientStorage.AddAsync(client);
+        return MbResult<Guid>.Success(client.Id);
     }
 }

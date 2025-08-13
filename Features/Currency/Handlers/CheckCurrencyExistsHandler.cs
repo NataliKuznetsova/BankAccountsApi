@@ -5,12 +5,12 @@ using MediatR;
 
 namespace BankAccountsApi.Features.Currency.Handlers;
 
-public class CheckCurrencyExistsHandler(IInMemoryCurrencyStorage storage)
+public class CheckCurrencyExistsHandler(ICurrencyRepository storage)
     : IRequestHandler<CheckCurrencyExistsQuery, MbResult<bool>>
 {
-    public Task<MbResult<bool>> Handle(CheckCurrencyExistsQuery request, CancellationToken cancellationToken)
+    public async Task<MbResult<bool>> Handle(CheckCurrencyExistsQuery request, CancellationToken cancellationToken)
     {
-        var exists = storage.Exists(request.Code);
-        return Task.FromResult(MbResult<bool>.Success(exists));
+        var exists = await storage.ExistsAsync(request.Code);
+        return MbResult<bool>.Success(exists);
     }
 }
