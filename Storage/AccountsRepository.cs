@@ -43,4 +43,10 @@ public class AccountsRepository : IAccountsRepository
             await _context.SaveChangesAsync();
         }
     }
+
+    public async Task AccrueInterestAsync(Guid accountId)
+    {
+        var sql = "CALL accrue_interest(@p_accountId)";
+        await _context.Database.ExecuteSqlRawAsync(sql, new Npgsql.NpgsqlParameter("@p_accountId", accountId));
+    }
 }

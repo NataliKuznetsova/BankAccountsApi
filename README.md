@@ -13,7 +13,7 @@ Swagger будет доступен по адресу: `http://localhost/swagger/index.html`
 
 Запуск Docker:
 docker compose up --build
-прогон миграций
+прогон миграций. сменить хост на localhost и прогнать
 dotnet ef database update
 
 для авторизации:

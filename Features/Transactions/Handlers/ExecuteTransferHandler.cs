@@ -1,4 +1,5 @@
-﻿using BankAccountsApi.Features.Transactions.Commands;
+﻿using BankAccountsApi.Features.Account.Enums;
+using BankAccountsApi.Features.Transactions.Commands;
 using BankAccountsApi.Infrastructure;
 using BankAccountsApi.Models;
 using BankAccountsApi.Storage;
@@ -27,7 +28,6 @@ public class ExecuteTransferHandler : IRequestHandler<ExecuteTransferCommand, Mb
 
     public async Task<MbResult<Unit>> Handle(ExecuteTransferCommand request, CancellationToken cancellationToken)
     {
-        // Запускаем транзакцию с уровнем изоляции Serializable
         await using var transaction = await _context.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable, cancellationToken);
 
         try
@@ -42,16 +42,20 @@ public class ExecuteTransferHandler : IRequestHandler<ExecuteTransferCommand, Mb
                 return MbResult.Failure(MbError.NotFound($"Счёт получателя не найден: {request.ToAccountId}"));
 
             if (sourceAccount.Balance < request.Amount)
-                return MbResult.Failure(MbError.Validation("Недостаточно средств на счёте отправителя", request.Amount.ToString(CultureInfo.InvariantCulture)));
+                return MbResult.Failure(MbError.Validation(
+                    "Недостаточно средств на счёте отправителя",
+                    request.Amount.ToString(CultureInfo.InvariantCulture)));
 
             var totalBalanceBefore = sourceAccount.Balance + destinationAccount.Balance;
 
+            // Списываем и зачисляем средства
             sourceAccount.Balance -= request.Amount;
             destinationAccount.Balance += request.Amount;
 
             await _accountStorage.UpdateAsync(sourceAccount);
             await _accountStorage.UpdateAsync(destinationAccount);
 
+            // Создаём транзакции
             var debitTransaction = new Transaction
             {
                 Id = Guid.NewGuid(),
@@ -75,8 +79,13 @@ public class ExecuteTransferHandler : IRequestHandler<ExecuteTransferCommand, Mb
             await _transactionStorage.AddAsync(debitTransaction);
             await _transactionStorage.AddAsync(creditTransaction);
 
-            var totalBalanceAfter = sourceAccount.Balance + destinationAccount.Balance;
+            // Если получатель — депозит, начисляем проценты через процедуру
+            if (destinationAccount.Type == AccountType.Deposit)
+            {
+                await _accountStorage.AccrueInterestAsync(destinationAccount.Id);
+            }
 
+            var totalBalanceAfter = sourceAccount.Balance + destinationAccount.Balance;
             if (totalBalanceBefore != totalBalanceAfter)
             {
                 throw new InvalidOperationException("Несоответствие итоговых балансов после перевода. Транзакция отменена");
@@ -88,7 +97,7 @@ public class ExecuteTransferHandler : IRequestHandler<ExecuteTransferCommand, Mb
         }
         catch (DbUpdateConcurrencyException)
         {
-            await transaction.RollbackAsync(cancellationToken); 
+            await transaction.RollbackAsync(cancellationToken);
             return MbResult.Failure(MbError.Conflict("Конфликт обновления данных"));
         }
         catch (Exception ex)

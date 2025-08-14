@@ -31,4 +31,9 @@ public interface IAccountsRepository
     /// Удалить счёт по идентификатору
     /// </summary>
     Task DeleteAsync(Guid id);
+
+    /// <summary>
+    /// Начисляет проценты по депозиту
+    /// </summary>
+    Task AccrueInterestAsync(Guid accountId);
 }

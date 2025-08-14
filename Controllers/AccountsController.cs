@@ -94,5 +94,28 @@ namespace BankAccountsApi.Controllers
         {
             return await mediator.Send(new HasAccountByOwnerIdQuery(ownerId));
         }
+        /// <summary>
+        /// Открытие нового вклада
+        /// </summary>
+        /// <param name="command">Данные для открытия вклада</param>
+        /// <returns>Идентификатор созданного вклада</returns>
+        [HttpPost("deposit/create")]
+        [ProducesResponseType(typeof(MbResult<Guid>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(MbResult<Guid>), StatusCodes.Status400BadRequest)]
+        public async Task<MbResult<Guid>> CreateDeposit([FromBody] CreateDepositCommand command)
+        {
+            return await mediator.Send(command);
+        }
+
+        /// <summary>
+        /// Закрытие вклада с начислением процентов
+        /// </summary>
+        /// <param name="command">Данные для закрытия вклада</param>
+        [HttpPost("deposit/close")]
+        [ProducesResponseType(typeof(MbResult<object>), StatusCodes.Status200OK)]
+        public async Task<MbResult<Unit>> CloseDeposit([FromBody] CloseDepositCommand command)
+        {
+            return await mediator.Send(command);
+        }
     }
 }
