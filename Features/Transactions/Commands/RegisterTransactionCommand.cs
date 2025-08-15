@@ -1,4 +1,5 @@
 ﻿using BankAccountsApi.Features.Transactions.Enums;
+using BankAccountsApi.Infrastructure;
 using MediatR;
 
 namespace BankAccountsApi.Features.Transactions.Commands;
@@ -6,7 +7,7 @@ namespace BankAccountsApi.Features.Transactions.Commands;
 /// <summary>
 /// Регистрация транзакции
 /// </summary>
-public class RegisterTransactionCommand : IRequest<Guid>
+public class RegisterTransactionCommand : IRequest<MbResult<Guid>>
 {
     public Guid AccountId { get; set; }
 

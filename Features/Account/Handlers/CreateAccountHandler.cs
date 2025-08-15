@@ -1,7 +1,6 @@
 ﻿using BankAccountsApi.Features.Account.Commands;
-using BankAccountsApi.Features.Account.Dto;
-using BankAccountsApi.Features.Account.Enums;
-using BankAccountsApi.Storage;
+using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Storage.Interfaces;
 using MediatR;
 
 namespace BankAccountsApi.Features.Account.Handlers;
@@ -9,11 +8,17 @@ namespace BankAccountsApi.Features.Account.Handlers;
 /// <summary>
 /// Хэндлер для создания счета
 /// </summary>
-public class CreateAccountHandler : IRequestHandler<CreateAccountCommand, Guid>
+public class CreateAccountHandler(IInMemoryAccountStorage storage, IInMemoryClientStorage clientStorage)
+    : IRequestHandler<CreateAccountCommand, MbResult<Guid>>
 {
-    public Task<Guid> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
+    public Task<MbResult<Guid>> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
-        var newAccount = new AccountDto()
+        if (!clientStorage.Exists(request.OwnerId))
+        {
+            return Task.FromResult(MbResult<Guid>.Failure(MbError.NotFound("Клиент не найден")));
+        }
+
+        var newAccount = new BankAccountsApi.Models.Account()
         {
             Id = Guid.NewGuid(),
             OwnerId = request.OwnerId,
@@ -24,7 +29,7 @@ public class CreateAccountHandler : IRequestHandler<CreateAccountCommand, Guid>
             OpenDate = DateTime.UtcNow
         };
 
-        InMemoryDatabase.Accounts.Add(newAccount);
-        return Task.FromResult(newAccount.Id);
+        storage.Create(newAccount);
+        return Task.FromResult(MbResult<Guid>.Success(newAccount.Id));
     }
 }

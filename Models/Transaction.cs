@@ -1,10 +1,12 @@
 ﻿using BankAccountsApi.Features.Transactions.Enums;
 
-namespace BankAccountsApi.Features.Transactions.Dto;
+namespace BankAccountsApi.Models;
 
-public class TransactionDto
+public class Transaction
 {
     public Guid Id { get; set; }
+    
+    public Guid AccountId { get; set; }
 
     public decimal Amount { get; set; }
 

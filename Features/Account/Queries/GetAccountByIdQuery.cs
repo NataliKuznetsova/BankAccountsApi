@@ -1,4 +1,4 @@
-﻿using BankAccountsApi.Features.Account.Dto;
+﻿using BankAccountsApi.Infrastructure;
 using MediatR;
 
 namespace BankAccountsApi.Features.Account.Queries;
@@ -6,7 +6,7 @@ namespace BankAccountsApi.Features.Account.Queries;
 /// <summary>
 /// Запрос на получение инфы о счёте
 /// </summary>
-public class GetAccountByIdQuery(Guid id) : IRequest<AccountDto>
+public class GetAccountByIdQuery(Guid id) : IRequest<MbResult<Models.Account>>
 {
     public Guid Id { get; set; } = id;
 }

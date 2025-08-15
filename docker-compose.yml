@@ -1,0 +1,32 @@
+﻿services:
+  keycloak:
+    image: docker.io/keycloak/keycloak:22.0.5
+    command:
+      - "start-dev"
+      - "--spi-cors-allowed-origins=http://localhost,http://localhost:*/swagger/oauth2-redirect.html"
+      - "--spi-cors-allow-credentials=true"
+      - "--spi-cors-allowed-methods=GET,POST,PUT,DELETE,OPTIONS"
+      - "--spi-cors-exposed-headers=*"
+      - "--http-enabled=true"
+      - "--hostname-strict=false"
+      - "--hostname-strict-https=false"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HOSTNAME: localhost
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./keycloak_data:/opt/keycloak/data
+
+  bank-accounts-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bank-accounts-api
+    ports:
+      - "80:80"
+    depends_on:
+      - keycloak
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development

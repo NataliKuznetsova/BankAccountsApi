@@ -1,11 +1,12 @@
-﻿using MediatR;
+﻿using BankAccountsApi.Infrastructure;
+using MediatR;
 
 namespace BankAccountsApi.Features.Transactions.Commands;
 
 /// <summary>
 /// Перевод между счетами
 /// </summary>
-public class ExecuteTransferCommand : IRequest<Guid>
+public class ExecuteTransferCommand : IRequest<MbResult<Unit>>
 {
     /// <summary>
     /// Счёт отправителя

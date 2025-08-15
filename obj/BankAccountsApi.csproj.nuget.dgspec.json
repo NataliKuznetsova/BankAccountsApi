@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Наталия\\Desktop\\m\\BankAccountsApp\\BankAccountsApi.csproj": {}
+    "C:\\Users\\Наталия\\Desktop\\BankAccountsApp\\BankAccountsApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Наталия\\Desktop\\m\\BankAccountsApp\\BankAccountsApi.csproj": {
+    "C:\\Users\\Наталия\\Desktop\\BankAccountsApp\\BankAccountsApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Наталия\\Desktop\\m\\BankAccountsApp\\BankAccountsApi.csproj",
+        "projectUniqueName": "C:\\Users\\Наталия\\Desktop\\BankAccountsApp\\BankAccountsApi.csproj",
         "projectName": "BankAccountsApi",
-        "projectPath": "C:\\Users\\Наталия\\Desktop\\m\\BankAccountsApp\\BankAccountsApi.csproj",
+        "projectPath": "C:\\Users\\Наталия\\Desktop\\BankAccountsApp\\BankAccountsApi.csproj",
         "packagesPath": "C:\\Users\\Наталия\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Наталия\\Desktop\\m\\BankAccountsApp\\obj\\",
+        "outputPath": "C:\\Users\\Наталия\\Desktop\\BankAccountsApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -62,7 +62,15 @@
             },
             "MediatR": {
               "target": "Package",
-              "version": "[12.1.1, )"
+              "version": "[11.1.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.7, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",

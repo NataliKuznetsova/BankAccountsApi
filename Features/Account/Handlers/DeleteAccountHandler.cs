@@ -1,13 +1,23 @@
 ﻿using BankAccountsApi.Features.Account.Commands;
+using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Storage.Interfaces;
 using MediatR;
 
 namespace BankAccountsApi.Features.Account.Handlers;
 
-public class DeleteAccountHandler : IRequestHandler<DeleteAccountCommand>
+public class DeleteAccountHandle(IInMemoryAccountStorage storage) : IRequestHandler<DeleteAccountCommand, MbResult<Unit>>
 {
-    public Task Handle(DeleteAccountCommand request, CancellationToken cancellationToken)
+    public Task<MbResult<Unit>> Handle(DeleteAccountCommand request, CancellationToken cancellationToken)
     {
-        // Тут будет логика удаления
-        return Task.CompletedTask;
+        var account = storage.GetById(request.Id);
+        if (account == null)
+        {
+            return Task.FromResult(
+                MbResult<Unit>.Failure(
+                    MbError.NotFound("Данный счет не найден")
+                ));
+        }
+        storage.Delete(request.Id);
+        return Task.FromResult(MbResult.Success());
     }
 }

@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using BankAccountsApi.Infrastructure;
+using MediatR;
 
 namespace BankAccountsApi.Features.Account.Commands;
 
-public class DeleteAccountCommand(Guid id) : IRequest
+public class DeleteAccountCommand(Guid id) : IRequest<MbResult<Unit>>
 {
     /// <summary>
     /// Идентификатор счета
