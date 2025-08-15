@@ -1,23 +1,35 @@
 ﻿services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
   keycloak:
     image: docker.io/keycloak/keycloak:22.0.5
     command:
       - "start-dev"
+      - "--hostname=keycloak"
+      - "--import-realm"
       - "--spi-cors-allowed-origins=http://localhost,http://localhost:*/swagger/oauth2-redirect.html"
       - "--spi-cors-allow-credentials=true"
       - "--spi-cors-allowed-methods=GET,POST,PUT,DELETE,OPTIONS"
       - "--spi-cors-exposed-headers=*"
       - "--http-enabled=true"
-      - "--hostname-strict=false"
-      - "--hostname-strict-https=false"
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-      KC_HOSTNAME: localhost
     ports:
       - "8080:8080"
     volumes:
-      - ./keycloak_data:/opt/keycloak/data
+      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json:ro
+    container_name: keycloak
+    restart: always
 
   bank-accounts-api:
     build:
@@ -28,5 +40,14 @@
       - "80:80"
     depends_on:
       - keycloak
+      - postgres
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      ConnectionStrings__DbConnection: "Host=postgres;Port=5432;Database=mydb;Username=postgres;Password=mypassword"
+      Authentication__Authority: "http://keycloak:8080/realms/bank-accounts-realm"
+      Authentication__Audience: "bank-accounts-api"
+
+volumes:
+  pgdata:

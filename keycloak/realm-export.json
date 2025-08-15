@@ -11,7 +11,9 @@
       "protocol": "openid-connect",
       "standardFlowEnabled": true,
       "serviceAccountsEnabled": true,
-      "bearerOnly": false
+      "directAccessGrantsEnabled": true,
+      "bearerOnly": false,
+      "webOrigins": ["*"]
     }
   ],
   "users": [

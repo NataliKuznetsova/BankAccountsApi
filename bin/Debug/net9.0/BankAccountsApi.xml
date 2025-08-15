@@ -160,7 +160,7 @@
             Хэндлер для создания счета
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Features.Account.Handlers.CreateAccountHandler.#ctor(BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage,BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage)">
+        <member name="M:BankAccountsApi.Features.Account.Handlers.CreateAccountHandler.#ctor(BankAccountsApi.Storage.Interfaces.IAccountsRepository,BankAccountsApi.Storage.Interfaces.IClientsRepository)">
             <summary>
             Хэндлер для создания счета
             </summary>
@@ -170,17 +170,12 @@
             Хэндлер для получения информации о счете
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Features.Account.Handlers.GetAccountByIdHandler.#ctor(BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage)">
+        <member name="M:BankAccountsApi.Features.Account.Handlers.GetAccountByIdHandler.#ctor(BankAccountsApi.Storage.Interfaces.IAccountsRepository)">
             <summary>
             Хэндлер для получения информации о счете
             </summary>
         </member>
         <member name="T:BankAccountsApi.Features.Account.Handlers.GetAccountsByOwnerIdHandler">
-            <summary>
-            Получение счетов пользователя
-            </summary>
-        </member>
-        <member name="M:BankAccountsApi.Features.Account.Handlers.GetAccountsByOwnerIdHandler.#ctor(BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage)">
             <summary>
             Получение счетов пользователя
             </summary>
@@ -245,7 +240,7 @@
             Запрос проверки клиента
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Features.Clients.Handlers.CheckClientExistsHandler.#ctor(BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage)">
+        <member name="M:BankAccountsApi.Features.Clients.Handlers.CheckClientExistsHandler.#ctor(BankAccountsApi.Storage.Interfaces.IClientsRepository)">
             <summary>
             Запрос проверки клиента
             </summary>
@@ -351,6 +346,54 @@
             </summary>
             <typeparam name="T">Тип возвращаемого значения</typeparam>
         </member>
+        <member name="T:BankAccountsApi.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BankAccountsApi.Migrations.AddIndexes">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddIndexes.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddIndexes.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddIndexes.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BankAccountsApi.Migrations.AddAccrueInterestProcedure">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddAccrueInterestProcedure.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddAccrueInterestProcedure.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddAccrueInterestProcedure.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BankAccountsApi.Migrations.AddNew">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddNew.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddNew.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddNew.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:BankAccountsApi.Models.Account">
             <summary>
             Модель счёта
@@ -376,73 +419,72 @@
             Список транзакций
             </summary>
         </member>
-        <member name="T:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage">
+        <member name="T:BankAccountsApi.Storage.Interfaces.IAccountsRepository">
             <summary>
             Хранилище для работы со счетами
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.Create(BankAccountsApi.Models.Account)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.IAccountsRepository.CreateAsync(BankAccountsApi.Models.Account)">
             <summary>
             Добавить новый счёт
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.GetById(System.Guid)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.IAccountsRepository.GetByIdAsync(System.Guid)">
             <summary>
             Получить счёт по идентификатору
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.GetByOwnerId(System.Guid)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.IAccountsRepository.GetByOwnerIdAsync(System.Guid)">
             <summary>
             Получить все счета пользователя
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.Update(BankAccountsApi.Models.Account)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.IAccountsRepository.UpdateAsync(BankAccountsApi.Models.Account)">
             <summary>
             Обновить существующий счёт
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryAccountStorage.Delete(System.Guid)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.IAccountsRepository.DeleteAsync(System.Guid)">
             <summary>
             Удалить счёт по идентификатору
             </summary>
         </member>
-        <member name="T:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage">
+        <member name="T:BankAccountsApi.Storage.Interfaces.IClientsRepository">
             <summary>
-            Интерфейс для хранилища клиентов
+            Хранилище для работы с клиентами
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage.Add(BankAccountsApi.Models.Client)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.IClientsRepository.AddAsync(BankAccountsApi.Models.Client)">
             <summary>
             Добавить клиента
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage.Exists(System.Guid)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.IClientsRepository.ExistsAsync(System.Guid)">
             <summary>
             Проверить существование клиента по идентификатору
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage.Get(System.Guid)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.IClientsRepository.GetByIdAsync(System.Guid)">
             <summary>
             Получить клиента по идентификатору
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryClientStorage.Update(BankAccountsApi.Models.Client)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.IClientsRepository.UpdateAsync(BankAccountsApi.Models.Client)">
             <summary>
-            Обновление инфы клиента
+            Обновить информацию о клиенте
             </summary>
-            <param name="client"></param>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryCurrencyStorage.Exists(System.String)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.ICurrencyRepository.ExistsAsync(System.String)">
             <summary>
             Проверяет, поддерживается ли валюта
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryTransactionStorage.GetByAccountId(System.Guid)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.ITransactionsRepository.GetByAccountIdAsync(System.Guid)">
             <summary>
             Получить все транзакции по счёту
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Storage.Interfaces.IInMemoryTransactionStorage.Add(BankAccountsApi.Models.Transaction)">
+        <member name="M:BankAccountsApi.Storage.Interfaces.ITransactionsRepository.AddAsync(BankAccountsApi.Models.Transaction)">
             <summary>
             Добавить новую транзакцию
             </summary>

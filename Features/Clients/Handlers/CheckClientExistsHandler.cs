@@ -8,11 +8,11 @@ namespace BankAccountsApi.Features.Clients.Handlers;
 /// <summary>
 /// Запрос проверки клиента
 /// </summary>
-public class CheckClientExistsHandler(IInMemoryClientStorage clientStorage) : IRequestHandler<CheckClientExistsQuery, MbResult<bool>>
+public class CheckClientExistsHandler(IClientsRepository clientStorage) : IRequestHandler<CheckClientExistsQuery, MbResult<bool>>
 {
-    public Task<MbResult<bool>> Handle(CheckClientExistsQuery request, CancellationToken cancellationToken)
+    public async Task<MbResult<bool>> Handle(CheckClientExistsQuery request, CancellationToken cancellationToken)
     {
-        var exists = clientStorage.Exists(request.Id);
-        return Task.FromResult(MbResult<bool>.Success(exists));
+        var exists = await clientStorage.ExistsAsync(request.Id);
+        return MbResult<bool>.Success(exists);
     }
 }

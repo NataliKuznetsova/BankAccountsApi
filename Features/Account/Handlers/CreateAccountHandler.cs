@@ -8,17 +8,17 @@ namespace BankAccountsApi.Features.Account.Handlers;
 /// <summary>
 /// Хэндлер для создания счета
 /// </summary>
-public class CreateAccountHandler(IInMemoryAccountStorage storage, IInMemoryClientStorage clientStorage)
+public class CreateAccountHandler(IAccountsRepository storage, IClientsRepository clientStorage)
     : IRequestHandler<CreateAccountCommand, MbResult<Guid>>
 {
-    public Task<MbResult<Guid>> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
+    public async Task<MbResult<Guid>> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
-        if (!clientStorage.Exists(request.OwnerId))
+        if (!await clientStorage.ExistsAsync(request.OwnerId))
         {
-            return Task.FromResult(MbResult<Guid>.Failure(MbError.NotFound("Клиент не найден")));
+            return MbResult<Guid>.Failure(MbError.NotFound("Клиент не найден"));
         }
 
-        var newAccount = new BankAccountsApi.Models.Account()
+        var newAccount = new Models.Account()
         {
             Id = Guid.NewGuid(),
             OwnerId = request.OwnerId,
@@ -29,7 +29,7 @@ public class CreateAccountHandler(IInMemoryAccountStorage storage, IInMemoryClie
             OpenDate = DateTime.UtcNow
         };
 
-        storage.Create(newAccount);
-        return Task.FromResult(MbResult<Guid>.Success(newAccount.Id));
+        await storage.CreateAsync(newAccount);
+        return MbResult<Guid>.Success(newAccount.Id);
     }
 }

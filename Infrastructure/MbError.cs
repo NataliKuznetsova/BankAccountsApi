@@ -33,6 +33,8 @@ public class MbError(string code, string message, string? field = null)
 
     public static MbError Internal(string message) =>
         new(ErrorCodes.Internal, message);
+    public static MbError Conflict(string message) =>
+        new(ErrorCodes.Conflict, message);
 }
 
 public static class MbResult

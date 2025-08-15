@@ -5,23 +5,29 @@ using MediatR;
 
 namespace BankAccountsApi.Features.Account.Handlers;
 
-public class UpdateAccountHandler(IInMemoryAccountStorage storage) : IRequestHandler<UpdateAccountCommand, MbResult<Unit>>
+public class UpdateAccountHandler : IRequestHandler<UpdateAccountCommand, MbResult<Unit>>
 {
-    public Task<MbResult<Unit>> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
+    private readonly IAccountsRepository _storage;
+
+    public UpdateAccountHandler(IAccountsRepository storage)
     {
-        var existingAccount = storage.GetById(request.Id);
+        _storage = storage;
+    }
+
+    public async Task<MbResult<Unit>> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
+    {
+        var existingAccount = await _storage.GetByIdAsync(request.Id);
         if (existingAccount == null)
         {
-            return Task.FromResult(
-                MbResult.Failure(MbError.NotFound("Счет не найден"))
-            );
+            return MbResult.Failure(MbError.NotFound("Счет не найден"));
         }
 
         // Обновляем поля
         existingAccount.Currency = request.Currency;
         existingAccount.InterestRate = request.InterestRate;
-        storage.Update(existingAccount);
 
-        return Task.FromResult(MbResult.Success());
+        await _storage.UpdateAsync(existingAccount);
+
+        return MbResult.Success();
     }
 }

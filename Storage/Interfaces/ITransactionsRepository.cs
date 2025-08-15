@@ -2,15 +2,15 @@
 
 namespace BankAccountsApi.Storage.Interfaces;
 
-public interface IInMemoryTransactionStorage
+public interface ITransactionsRepository
 {
     /// <summary>
     /// Получить все транзакции по счёту
     /// </summary>
-    List<Transaction> GetByAccountId(Guid accountId);
+    Task<List<Transaction>> GetByAccountIdAsync(Guid accountId);
 
     /// <summary>
     /// Добавить новую транзакцию
     /// </summary>
-    void Add(Transaction transaction);
+    Task AddAsync(Transaction transaction);
 }
