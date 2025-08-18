@@ -1,6 +1,5 @@
 ﻿using BankAccountsApi.Features.Account.Enums;
 using BankAccountsApi.Features.Transactions.Commands;
-using BankAccountsApi.Infrastructure.Errors;
 using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Models;
 using BankAccountsApi.Storage;

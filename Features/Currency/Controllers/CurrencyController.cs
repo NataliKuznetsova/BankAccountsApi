@@ -1,6 +1,6 @@
 ﻿using BankAccountsApi.Features.Currency.Query;
 using BankAccountsApi.Infrastructure;
-using BankAccountsApi.Infrastructure.Errors;
+using BankAccountsApi.Infrastructure.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

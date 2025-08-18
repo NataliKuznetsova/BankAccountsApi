@@ -1,4 +1,4 @@
-﻿using BankAccountsApi.Infrastructure.Errors;
+﻿using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Models;
 using MediatR;
 

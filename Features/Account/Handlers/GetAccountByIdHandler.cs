@@ -1,5 +1,4 @@
 ﻿using BankAccountsApi.Features.Account.Queries;
-using BankAccountsApi.Infrastructure.Errors;
 using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Storage.Interfaces;
 using MediatR;

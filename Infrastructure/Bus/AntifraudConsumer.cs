@@ -1,9 +1,12 @@
-﻿using BankAccountsApi.Storage.Interfaces;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
+using BankAccountsApi.Storage.Interfaces;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+// ReSharper disable All
+
+namespace BankAccountsApi.Infrastructure.Bus;
 
 public class AntifraudConsumer : BackgroundService
 {
@@ -11,8 +14,8 @@ public class AntifraudConsumer : BackgroundService
     private readonly IConnectionFactory _connectionFactory;
     private readonly ILogger<AntifraudConsumer> _logger;
 
-    private IConnection _connection;
-    private IModel _channel;
+    private IConnection? _connection;
+    private IModel? _channel;
 
     private const string QueueName = "account.antifraud";
 
@@ -173,15 +176,15 @@ public class AntifraudConsumer : BackgroundService
     {
         public Guid EventId { get; set; }
         public DateTime OccurredAt { get; set; }
-        public string Type { get; set; }
+        public string Type { get; set; } = "";
         public Guid ClientId { get; set; }
-        public MetaData Meta { get; set; }
+        public MetaData? Meta { get; set; }
     }
 
     public class MetaData
     {
-        public string Version { get; set; }
-        public string Source { get; set; }
+        public string Version { get; set; } = "";
+        public string Source { get; set; } = "";
         public Guid CorrelationId { get; set; }
         public Guid CausationId { get; set; }
     }

@@ -1,5 +1,4 @@
-﻿using BankAccountsApi.Infrastructure.Errors;
-using MediatR;
+﻿using MediatR;
 
 namespace BankAccountsApi.Infrastructure.Results;
 

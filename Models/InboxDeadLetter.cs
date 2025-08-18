@@ -17,15 +17,15 @@ namespace BankAccountsApi.Models
         [Required]
         [MaxLength(200)]
         [Column("handler")]
-        public string Handler { get; set; }
+        public string Handler { get; set; } = "";
 
         [Required]
         [Column("payload", TypeName = "jsonb")]
-        public string Payload { get; set; }
+        public string Payload { get; set; } = "";
 
         [Required]
         [MaxLength(1000)]
         [Column("error")]
-        public string Error { get; set; }
+        public string Error { get; set; } = "";
     }
 }

@@ -7,12 +7,18 @@ using NUnit.Framework;
 
 namespace BankAccountsApi.Tests.Unit
 {
+    /// <summary>
+    /// Тест на поиск клиента по id
+    /// </summary>
     [TestFixture]
     public class GetClientByIdHandlerTests
     {
         private Mock<IClientsRepository>? _clientRepoMock;
         private GetClientByIdHandler? _handler;
 
+        /// <summary>
+        /// 
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -20,6 +26,9 @@ namespace BankAccountsApi.Tests.Unit
             _handler = new GetClientByIdHandler(_clientRepoMock.Object);
         }
 
+        /// <summary>
+        /// Клиент существует
+        /// </summary>
         [Test]
         public async Task Handle_ClientExists_ReturnsSuccessWithClient()
         {
@@ -39,6 +48,9 @@ namespace BankAccountsApi.Tests.Unit
             Assert.That(result.Value?.Id, Is.EqualTo(clientId));
         }
 
+        /// <summary>
+        /// Тест клиент не найден
+        /// </summary>
         [Test]
         public async Task Handle_ClientNotFound_ReturnsNotFound()
         {

@@ -15,6 +15,9 @@ using System.Net.Http.Json;
 
 namespace BankAccountsApi.Tests.Integration
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestFixture]
     public class ParallelTransferTests
     {
@@ -25,6 +28,9 @@ namespace BankAccountsApi.Tests.Integration
         private Guid _accountFromId;
         private Guid _accountToId;
 
+        /// <summary>
+        /// Setup
+        /// </summary>
         [OneTimeSetUp]
         public async Task OneTimeSetup()
         {
@@ -103,6 +109,9 @@ namespace BankAccountsApi.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// 50 параллельных переводов
+        /// </summary>
         [Test]
         public async Task Transfer_50ParallelRequests_TotalBalanceIsPreserved()
         {
@@ -146,6 +155,9 @@ namespace BankAccountsApi.Tests.Integration
                 new { From = _accountFromId, To = _accountToId });
         }
 
+        /// <summary>
+        /// TearDown
+        /// </summary>
         [OneTimeTearDown]
         public void TearDown()
         {

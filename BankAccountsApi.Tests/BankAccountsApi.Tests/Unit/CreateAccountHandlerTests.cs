@@ -11,6 +11,9 @@ using NUnit.Framework;
 
 namespace BankAccountsApi.Tests.Unit
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestFixture]
     public class CreateAccountHandlerTests
     {
@@ -19,6 +22,9 @@ namespace BankAccountsApi.Tests.Unit
         private Mock<IOutboxRepository>? _outboxRepositoryMock;
         private CreateAccountHandler? _handler;
 
+        /// <summary>
+        /// 
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -36,6 +42,9 @@ namespace BankAccountsApi.Tests.Unit
             _handler = new CreateAccountHandler(_accountRepoMock.Object, _clientRepoMock.Object, _outboxRepositoryMock.Object, context);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task Handle_ClientExists_CreatesAccountAndReturnsSuccess()
         {
@@ -66,6 +75,9 @@ namespace BankAccountsApi.Tests.Unit
                 acc.Balance == 0)), Times.Once);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task Handle_ClientDoesNotExist_ReturnsNotFound()
         {

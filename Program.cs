@@ -121,7 +121,7 @@ namespace BankAccountsApi
             var rabbitConfig = builder.Configuration.GetSection("RabbitMQ");
             var amqpUri = $"amqp://{rabbitConfig["UserName"]}:{rabbitConfig["Password"]}@{rabbitConfig["Endpoint"]}";
 
-            builder.Services.AddSingleton<RabbitMQ.Client.IConnectionFactory>(sp =>
+            builder.Services.AddSingleton<RabbitMQ.Client.IConnectionFactory>(_ =>
                  new ConnectionFactory { Uri = new Uri(amqpUri) });
 
             builder.Services.AddSingleton(rabbitConfig.GetSection("EventRouting")

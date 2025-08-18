@@ -14,14 +14,22 @@ using Testcontainers.RabbitMq;
 
 namespace BankAccountsApi.Tests.Integration
 {
+    /// <summary>
+    /// Интеграционный тест 
+    /// </summary>
     [TestFixture]
     public class OutboxIntegrationTests
     {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         private RabbitMqContainer _rabbitMqContainer;
         private ServiceProvider _serviceProvider;
         private MessageBus _messageBus;
         private IOutboxRepository _outboxRepository;
 
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+        /// <summary>
+        /// 
+        /// </summary>
         [OneTimeSetUp]
         public async Task Setup()
         {
@@ -67,8 +75,11 @@ namespace BankAccountsApi.Tests.Integration
             );
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [OneTimeTearDown]
-        public async Task GlobalTeardown()
+        public async Task Teardown()
         {
             if (_rabbitMqContainer != null)
             {
@@ -82,6 +93,9 @@ namespace BankAccountsApi.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task OutboxPublishes50Events()
         {

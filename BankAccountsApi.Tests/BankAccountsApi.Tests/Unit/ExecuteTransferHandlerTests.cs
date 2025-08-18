@@ -11,6 +11,9 @@ using NUnit.Framework;
 
 namespace BankAccountsApi.Tests.Unit
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestFixture]
     public class ExecuteTransferHandlerTests
     {
@@ -20,6 +23,9 @@ namespace BankAccountsApi.Tests.Unit
         private ExecuteTransferHandler? _handler;
         private Mock<IOutboxRepository>? _outboxRepositoryMock;
 
+        /// <summary>
+        /// 
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -41,6 +47,9 @@ namespace BankAccountsApi.Tests.Unit
                 _outboxRepositoryMock.Object);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task Handle_SuccessfulTransfer_ReturnsSuccess()
         {
@@ -85,6 +94,9 @@ namespace BankAccountsApi.Tests.Unit
             _transactionRepoMock!.Verify(r => r.AddAsync(It.IsAny<Transaction>()), Times.Exactly(2));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task Handle_SourceAccountNotFound_ReturnsNotFound()
         {
@@ -107,6 +119,9 @@ namespace BankAccountsApi.Tests.Unit
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task Handle_DestinationAccountNotFound_ReturnsNotFound()
         {
@@ -132,6 +147,9 @@ namespace BankAccountsApi.Tests.Unit
             Assert.That(result.Error!.Code, Is.EqualTo("not_found"));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task Handle_InsufficientFunds_ReturnsValidationError()
         {
@@ -167,6 +185,9 @@ namespace BankAccountsApi.Tests.Unit
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task Handle_DbUpdateConcurrencyException_ReturnsConflictError()
         {
@@ -193,7 +214,6 @@ namespace BankAccountsApi.Tests.Unit
             _accountRepoMock!.Setup(r => r.GetByIdAsync(command.FromAccountId)).ReturnsAsync(sourceAccount);
             _accountRepoMock!.Setup(r => r.GetByIdAsync(command.ToAccountId)).ReturnsAsync(destinationAccount);
 
-            // Здесь делаем так, чтобы UpdateAsync бросал исключение DbUpdateConcurrencyException
             _accountRepoMock!.Setup(r => r.UpdateAsync(It.IsAny<Account>()))
                 .ThrowsAsync(new DbUpdateConcurrencyException());
 

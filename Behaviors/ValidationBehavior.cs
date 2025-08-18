@@ -1,5 +1,4 @@
-﻿using BankAccountsApi.Infrastructure.Errors;
-using BankAccountsApi.Infrastructure.Results;
+﻿using BankAccountsApi.Infrastructure.Results;
 using FluentValidation;
 using MediatR;
 

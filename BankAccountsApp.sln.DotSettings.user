@@ -20,16 +20,10 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AServiceCollection_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003F595e4f2361fd31cb66c7e9303f46cf8f2fe77d96eea9d0e42c17cae783aa74_003FServiceCollection_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AServiceProviderServiceExtensions_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003F621526284d3e4868b98948aff942206525763e57e194a27623b66c384466_003FServiceProviderServiceExtensions_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	
-	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">ShowAndRun</s:String>
+	
+	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">DoNotShowAndRun</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2858336c_002D5777_002D4a73_002Db052_002D53bace1a99a5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ParallelTransferTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::13C6A2A2-0A81-4B63-BA2B-976EF0462B76::net9.0::BankAccountsApi.Tests.Integration.ParallelTransferTests&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-    &lt;And&gt;&#xD;
-      &lt;Namespace&gt;BankAccountsApi.Tests.Features.Transactions&lt;/Namespace&gt;&#xD;
-      &lt;Project Location="C:\Users\Наталия\Desktop\BankAccountsApp" Presentation="&amp;lt;BankAccountsApi&amp;gt;" /&gt;&#xD;
-    &lt;/And&gt;&#xD;
-    &lt;ProjectFile&gt;13C6A2A2-0A81-4B63-BA2B-976EF0462B76/d:Tests/d:Unit/f:CreateAccountHandlerTests.cs&lt;/ProjectFile&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::F7DD10F6-7CFA-4AC5-859F-2DE6407AC948::net9.0::BankAccountsApi.Tests.Integration.AntifraudConsumerTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

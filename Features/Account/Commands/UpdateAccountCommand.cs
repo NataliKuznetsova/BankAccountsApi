@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using BankAccountsApi.Features.Account.Enums;
-using BankAccountsApi.Infrastructure.Errors;
+using BankAccountsApi.Infrastructure.Results;
 
 namespace BankAccountsApi.Features.Account.Commands
 {

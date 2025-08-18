@@ -1,7 +1,8 @@
 ﻿using BankAccountsApi.Features.Transactions.Commands;
 using BankAccountsApi.Features.Transactions.Enums;
 using BankAccountsApi.Features.Transactions.Handlers;
-using BankAccountsApi.Infrastructure.Errors;
+using BankAccountsApi.Infrastructure.Bus;
+using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Models;
 using BankAccountsApi.Storage;
 using BankAccountsApi.Storage.Interfaces;
@@ -12,16 +13,22 @@ using NUnit.Framework;
 
 namespace BankAccountsApi.Tests.Integration
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestFixture]
     public class AntifraudConsumerTests
     {
-        private AppDbContext _context;
-        private IClientsRepository _clientsRepository;
-        private IAccountsRepository _accountsRepository;
-        private IInboxRepository _inboxRepository;
-        private IInboxDeadLetterRepository _inboxDeadLetterRepository;
-        private AntifraudConsumer _consumer;
+        private AppDbContext? _context;
+        private IClientsRepository? _clientsRepository;
+        private IAccountsRepository? _accountsRepository;
+        private IInboxRepository? _inboxRepository;
+        private IInboxDeadLetterRepository? _inboxDeadLetterRepository;
+        private AntifraudConsumer? _consumer;
 
+        /// <summary>
+        /// 
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -47,11 +54,16 @@ namespace BankAccountsApi.Tests.Integration
 
             _consumer = new AntifraudConsumer(
                 scopeFactory,
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
                 null,
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
                 NullLogger<AntifraudConsumer>.Instance
             );
         }
 
+        /// <summary>
+        /// Блокируем клиента
+        /// </summary>
         [Test]
         public async Task ClientBlockedPreventsDebit()
         {
@@ -76,7 +88,7 @@ namespace BankAccountsApi.Tests.Integration
             var updatedClient = await _clientsRepository.GetByIdAsync(client.Id);
             var updatedAccounts = await _accountsRepository.GetByOwnerIdAsync(client.Id);
 
-            Assert.That(updatedClient.IsFrozen, Is.True);
+            Assert.That(updatedClient?.IsFrozen, Is.True);
             Assert.That(updatedAccounts.All(a => a.IsFrozen), Is.True);
 
             // Проверяем, что дебет запрещён

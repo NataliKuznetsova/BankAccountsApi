@@ -1,7 +1,7 @@
 ﻿using BankAccountsApi.Features.Account.Commands;
 using BankAccountsApi.Features.Account.Queries;
 using BankAccountsApi.Infrastructure;
-using BankAccountsApi.Infrastructure.Errors;
+using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -37,9 +37,9 @@ namespace BankAccountsApi.Features.Account.Controllers
         /// <param name="accountId">Id счёта</param>
         /// <returns>Счёт клиента</returns>
         [HttpGet("{accountId:guid}")]
-        [ProducesResponseType(typeof(MbResult<Account>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(MbResult<Account>), StatusCodes.Status404NotFound)]
-        public async Task<MbResult<Account>> GetAccountById(Guid accountId)
+        [ProducesResponseType(typeof(MbResult<Models.Account>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(MbResult<Models.Account>), StatusCodes.Status404NotFound)]
+        public async Task<MbResult<Models.Account>> GetAccountById(Guid accountId)
         {
             return await mediator.Send(new GetAccountByIdQuery(accountId));
         }
@@ -62,8 +62,8 @@ namespace BankAccountsApi.Features.Account.Controllers
         /// <param name="ownerId">Идентификатор пользователя</param>
         /// <returns>Список счетов</returns>
         [HttpGet("{ownerId:guid}/all")]
-        [ProducesResponseType(typeof(MbResult<List<Account>>), StatusCodes.Status200OK)]
-        public async Task<MbResult<List<Account>>> GetAccounts(Guid ownerId)
+        [ProducesResponseType(typeof(MbResult<List<Models.Account>>), StatusCodes.Status200OK)]
+        public async Task<MbResult<List<Models.Account>>> GetAccounts(Guid ownerId)
         {
             var query = new GetAccountsQuery { OwnerId = ownerId };
             return await mediator.Send(query);

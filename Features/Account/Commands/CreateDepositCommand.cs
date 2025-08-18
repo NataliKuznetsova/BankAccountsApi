@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using BankAccountsApi.Infrastructure.Errors;
+using BankAccountsApi.Infrastructure.Results;
 
 namespace BankAccountsApi.Features.Account.Commands
 {
