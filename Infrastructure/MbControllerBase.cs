@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BankAccountsApi.Infrastructure.Errors;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BankAccountsApi.Infrastructure;
 

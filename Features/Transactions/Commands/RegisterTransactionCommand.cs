@@ -1,5 +1,5 @@
 ﻿using BankAccountsApi.Features.Transactions.Enums;
-using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Errors;
 using MediatR;
 
 namespace BankAccountsApi.Features.Transactions.Commands;

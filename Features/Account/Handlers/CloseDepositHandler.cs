@@ -1,6 +1,7 @@
 ﻿using BankAccountsApi.Features.Account.Commands;
 using BankAccountsApi.Features.Account.Enums;
-using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Errors;
+using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Storage.Interfaces;
 using MediatR;
 

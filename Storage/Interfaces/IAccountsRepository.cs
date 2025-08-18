@@ -1,4 +1,5 @@
-﻿using BankAccountsApi.Models;
+﻿using BankAccountsApi.Features.Account.Enums;
+using BankAccountsApi.Models;
 
 namespace BankAccountsApi.Storage.Interfaces;
 
@@ -36,4 +37,5 @@ public interface IAccountsRepository
     /// Начисляет проценты по депозиту
     /// </summary>
     Task AccrueInterestAsync(Guid accountId);
+    Task<IEnumerable<Account>> GetByTypesAsync(List<AccountType> types);
 }

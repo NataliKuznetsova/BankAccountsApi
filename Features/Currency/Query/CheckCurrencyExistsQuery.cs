@@ -1,4 +1,4 @@
-﻿using BankAccountsApi.Infrastructure;
+﻿using BankAccountsApi.Infrastructure.Errors;
 using MediatR;
 
 namespace BankAccountsApi.Features.Currency.Query;

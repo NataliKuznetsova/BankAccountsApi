@@ -14,7 +14,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y curl iputils-ping && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /publish ./
-COPY app/appsettings.json ./
+COPY app/appsettings.LocalDocker.json ./
 
 ENV ASPNETCORE_URLS=http://+:80
 EXPOSE 80

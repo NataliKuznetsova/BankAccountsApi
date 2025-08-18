@@ -1,6 +1,5 @@
-﻿using BankAccountsApi.Infrastructure;
+﻿using BankAccountsApi.Infrastructure.Errors;
 using MediatR;
-using System;
 
 namespace BankAccountsApi.Features.Account.Commands
 {

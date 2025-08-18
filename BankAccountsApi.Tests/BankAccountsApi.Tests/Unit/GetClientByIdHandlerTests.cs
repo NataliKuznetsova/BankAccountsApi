@@ -3,6 +3,7 @@ using BankAccountsApi.Features.Clients.Queries;
 using BankAccountsApi.Models;
 using BankAccountsApi.Storage.Interfaces;
 using Moq;
+using NUnit.Framework;
 
 namespace BankAccountsApi.Tests.Unit
 {
@@ -30,8 +31,11 @@ namespace BankAccountsApi.Tests.Unit
             var query = new GetClientByIdQuery(clientId);
             var result = await _handler?.Handle(query, CancellationToken.None)!;
 
-            Assert.That(result.IsSuccess, Is.True);
-            Assert.That(result.Value, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.True);
+                Assert.That(result.Value, Is.Not.Null);
+            });
             Assert.That(result.Value?.Id, Is.EqualTo(clientId));
         }
 
@@ -45,8 +49,11 @@ namespace BankAccountsApi.Tests.Unit
             var query = new GetClientByIdQuery(clientId);
             var result = await _handler?.Handle(query, CancellationToken.None)!;
 
-            Assert.That(result.IsSuccess, Is.False);
-            Assert.That(result.Error?.Code, Is.EqualTo("not_found"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.False);
+                Assert.That(result.Error?.Code, Is.EqualTo("not_found"));
+            });
         }
     }
 }

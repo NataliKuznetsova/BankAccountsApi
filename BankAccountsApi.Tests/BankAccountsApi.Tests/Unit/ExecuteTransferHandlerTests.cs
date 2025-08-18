@@ -1,11 +1,13 @@
 ﻿using BankAccountsApi.Features.Transactions.Commands;
 using BankAccountsApi.Features.Transactions.Handlers;
+using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Models;
 using BankAccountsApi.Storage;
 using BankAccountsApi.Storage.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Moq;
+using NUnit.Framework;
 
 namespace BankAccountsApi.Tests.Unit
 {
@@ -16,26 +18,27 @@ namespace BankAccountsApi.Tests.Unit
         private Mock<IAccountsRepository>? _accountRepoMock;
         private AppDbContext? _context;
         private ExecuteTransferHandler? _handler;
+        private Mock<IOutboxRepository>? _outboxRepositoryMock;
 
         [SetUp]
         public void Setup()
         {
             _transactionRepoMock = new Mock<ITransactionsRepository>();
             _accountRepoMock = new Mock<IAccountsRepository>();
+            _outboxRepositoryMock = new Mock<IOutboxRepository>();
 
-            // Создаем опции InMemory базы с подавлением предупреждения о транзакциях
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()) // уникальная база на каждый тест
-                .ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning)) // Подавляем ошибку о транзакциях
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()) 
+                .ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            // Реальный контекст EF Core с InMemory
             _context = new AppDbContext(options);
 
             _handler = new ExecuteTransferHandler(
                 _transactionRepoMock.Object,
                 _accountRepoMock.Object,
-                _context);
+                _context,
+                _outboxRepositoryMock.Object);
         }
 
         [Test]
@@ -97,8 +100,11 @@ namespace BankAccountsApi.Tests.Unit
 
             var result = await _handler!.Handle(command, CancellationToken.None);
 
-            Assert.That(result.IsSuccess, Is.False);
-            Assert.That(result.Error?.Code, Is.EqualTo("not_found"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.False);
+                Assert.That(result.Error?.Code, Is.EqualTo("not_found"));
+            });
         }
 
         [Test]
@@ -123,8 +129,7 @@ namespace BankAccountsApi.Tests.Unit
 
             var result = await _handler!.Handle(command, CancellationToken.None);
 
-            Assert.That(result.IsSuccess, Is.False);
-            Assert.That(result.Error?.Code, Is.EqualTo("not_found"));
+            Assert.That(result.Error!.Code, Is.EqualTo("not_found"));
         }
 
         [Test]
@@ -155,8 +160,11 @@ namespace BankAccountsApi.Tests.Unit
 
             var result = await _handler!.Handle(command, CancellationToken.None);
 
-            Assert.That(result.IsSuccess, Is.False);
-            Assert.That(result.Error?.Code, Is.EqualTo("validationfailed"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.False);
+                Assert.That(result.Error?.Code, Is.EqualTo("validationfailed"));
+            });
         }
 
         [Test]
@@ -192,9 +200,7 @@ namespace BankAccountsApi.Tests.Unit
             _transactionRepoMock!.Setup(r => r.AddAsync(It.IsAny<Transaction>())).Returns(Task.CompletedTask);
 
             var result = await _handler!.Handle(command, CancellationToken.None);
-
-            Assert.That(result.IsSuccess, Is.False);
-            Assert.That(result.Error?.Code, Is.EqualTo("conflict"));
+            Assert.That(result.Error!.Code, Is.EqualTo("conflict"));
         }
     }
 }

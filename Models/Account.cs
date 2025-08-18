@@ -8,6 +8,7 @@ namespace BankAccountsApi.Models;
 /// </summary>
 public class Account
 {
+    [Key]
     public Guid Id { get; set; }
     public Guid OwnerId { get; set; }
     public AccountType Type { get; set; }
@@ -18,4 +19,6 @@ public class Account
     public decimal? InterestRate { get; set; }
     public DateTime OpenDate { get; set; }
     public DateTime? CloseDate { get; set; }
+    public DateTime? LastInterestDate { get; set; }
+    public bool IsFrozen {  get; set; } = false;
 }

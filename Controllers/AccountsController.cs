@@ -1,6 +1,7 @@
 ﻿using BankAccountsApi.Features.Account.Commands;
 using BankAccountsApi.Features.Account.Queries;
 using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Errors;
 using BankAccountsApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

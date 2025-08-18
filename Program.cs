@@ -1,5 +1,6 @@
 using BankAccountsApi.Behaviors;
 using BankAccountsApi.Hangfire;
+using BankAccountsApi.Infrastructure.Bus;
 using BankAccountsApi.Storage;
 using BankAccountsApi.Storage.Interfaces;
 using FluentValidation;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using RabbitMQ.Client;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -17,11 +19,17 @@ namespace BankAccountsApi
 {
     public class Program
     {
+        private static readonly string[] value = ["openid"];
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Configuration.AddJsonFile("app/appsettings.json", optional: false, reloadOnChange: true);
+            builder.Configuration
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("app/appsettings.json", optional: false, reloadOnChange: true)
+                   .AddJsonFile($"app/appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                   .AddEnvironmentVariables();
 
             builder.Services.AddCors(options =>
             {
@@ -65,8 +73,7 @@ namespace BankAccountsApi
                                 Id = "oauth2"
                             }
                         },
-                        new[] { "openid" }
-                    }
+                        value }
                 });
             });
 
@@ -87,12 +94,6 @@ namespace BankAccountsApi
                 });
 
             // Регистрация контроллеров
-            builder.Services.AddControllers()
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                });
-
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
@@ -104,6 +105,7 @@ namespace BankAccountsApi
             builder.Services.AddScoped<IClientsRepository, ClientsRepository>();
             builder.Services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             builder.Services.AddScoped<ITransactionsRepository, TransactionsRepository>();
+            builder.Services.AddScoped<IOutboxRepository, OutboxRepository>();
 
             builder.Services.AddMediatR(typeof(Program));
             builder.Services.AddAuthorization();
@@ -113,8 +115,25 @@ namespace BankAccountsApi
             {
                 config.UsePostgreSqlStorage(builder.Configuration.GetConnectionString("DbConnection"));
             });
-            builder.Services.AddHangfireServer(); 
+            builder.Services.AddHangfireServer();
             builder.Services.AddHttpClient();
+
+            var rabbitConfig = builder.Configuration.GetSection("RabbitMQ");
+            var amqpUri = $"amqp://{rabbitConfig["UserName"]}:{rabbitConfig["Password"]}@{rabbitConfig["Endpoint"]}";
+
+            builder.Services.AddSingleton<RabbitMQ.Client.IConnectionFactory>(sp =>
+                 new ConnectionFactory { Uri = new Uri(amqpUri) });
+
+            builder.Services.AddSingleton(rabbitConfig.GetSection("EventRouting")
+                                               .Get<Dictionary<string, string>>()!);
+
+            builder.Services.AddSingleton<MessageBus>();
+            builder.Services.AddHostedService<AntifraudConsumer>();
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
 
             var app = builder.Build();
 
@@ -132,8 +151,13 @@ namespace BankAccountsApi
             RecurringJob.AddOrUpdate<InterestService>(
                 "CalculateInterestJob",
                 service => service.CalculateInterestAsync(),
-                Cron.Daily
+                Cron.Minutely
             );
+
+            RecurringJob.AddOrUpdate<MessageBus>(
+                "PublishOutboxEvents",
+                x => x.PublishPendingEventsAsync(),
+                Cron.Minutely);
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

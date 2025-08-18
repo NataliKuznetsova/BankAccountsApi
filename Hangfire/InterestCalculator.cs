@@ -1,9 +1,14 @@
-﻿using Dapper;
+﻿using BankAccountsApi.Features.Account.Enums;
+using BankAccountsApi.Storage.Interfaces;
+using Dapper;
 using Npgsql;
 
 namespace BankAccountsApi.Hangfire
 {
-    public class InterestService(IConfiguration configuration)
+    public class InterestService(
+        IAccountsRepository storage,
+        IConfiguration configuration,
+        IOutboxRepository outboxRepository)
     {
         private readonly string _connectionString = configuration.GetConnectionString("DbConnection")!;
 
@@ -12,24 +17,32 @@ namespace BankAccountsApi.Hangfire
             await using var connection = new NpgsqlConnection(_connectionString);
             await connection.OpenAsync();
 
-            // Начинаем транзакцию с уровнем изоляции Serializable
             await using var transaction = await connection.BeginTransactionAsync(System.Data.IsolationLevel.Serializable);
 
             try
             {
                 // Получаем все счета Deposit и Credit с ненулевой процентной ставкой
-                var accounts = await connection.QueryAsync<Guid>(@"
-                    SELECT ""Id""
-                    FROM public.""Accounts""
-                    WHERE ""Type"" IN (1, 3) 
-                      AND ""InterestRate"" > 0
-                ", transaction: transaction);
-
-                foreach (var accountId in accounts)
+                var accounts = await storage.GetByTypesAsync([AccountType.Deposit, AccountType.Credit]);
+                foreach (var account in accounts)
                 {
-                    // Вызываем процедуру начисления процентов
-                    await connection.ExecuteAsync("CALL accrue_interest(@AccountId)",
-                        new { AccountId = accountId }, transaction: transaction);
+                    var result = await connection.QuerySingleOrDefaultAsync<InterestAccrualResult>(
+                        "SELECT * FROM accrue_interest(@account_id)",
+                        new { account_id = account.Id },
+                        transaction: transaction
+                    );
+
+                    if (result != null)
+                    {
+                        await outboxRepository.AddEventAsync("InterestAccrued", new 
+                        {
+                            EventId = Guid.NewGuid(),
+                            OccurredAt = DateTime.UtcNow,
+                            AccountId = account,
+                            result.PeriodFrom,
+                            result.PeriodTo,
+                            result.Amount
+                        });
+                    }
                 }
 
                 await transaction.CommitAsync();
@@ -40,5 +53,10 @@ namespace BankAccountsApi.Hangfire
                 throw;
             }
         }
+        public record InterestAccrualResult(
+            DateTime PeriodFrom,
+            DateTime PeriodTo,
+            decimal Amount
+        );
     }
 }

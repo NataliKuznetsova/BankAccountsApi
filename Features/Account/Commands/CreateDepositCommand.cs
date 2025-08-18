@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Errors;
 
 namespace BankAccountsApi.Features.Account.Commands
 {
     /// <summary>
-    /// Команда для открытия нового срочного вклада.
+    /// Команда для открытия нового вклада
     /// </summary>
     public class CreateDepositCommand : IRequest<MbResult<Guid>>
     {

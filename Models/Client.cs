@@ -7,6 +7,7 @@ public class Client
     /// <summary>
     /// Идентификатор клиента
     /// </summary>
+    [Key]
     public Guid Id { get; set; }
 
     [StringLength(150)]
@@ -14,4 +15,5 @@ public class Client
 
     [StringLength(150)]
     public string LastName { get; set; } = string.Empty;
+    public bool IsFrozen { get; set; } = false;
 }

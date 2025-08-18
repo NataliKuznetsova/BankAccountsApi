@@ -1,6 +1,7 @@
-﻿using MediatR;
+﻿using BankAccountsApi.Infrastructure.Errors;
+using MediatR;
 
-namespace BankAccountsApi.Infrastructure;
+namespace BankAccountsApi.Infrastructure.Results;
 
 /// <summary>
 /// Ошибка
@@ -41,7 +42,6 @@ public static class MbResult
 {
     public static MbResult<Unit> Success() => MbResult<Unit>.Success(Unit.Value);
 
-    public static MbResult<Unit> Failure(MbError error) => MbResult<Unit>.Failure(error);
-
     public static bool IsSuccess<T>(MbResult<T> result) => result.IsSuccess;
+    public static MbResult<T> Failure<T>(MbError error) => MbResult<T>.Failure(error);
 }

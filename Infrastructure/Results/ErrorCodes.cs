@@ -1,4 +1,4 @@
-﻿namespace BankAccountsApi.Infrastructure;
+﻿namespace BankAccountsApi.Infrastructure.Errors;
 
 public static class ErrorCodes
 {

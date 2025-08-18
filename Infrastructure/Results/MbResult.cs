@@ -1,4 +1,6 @@
-﻿namespace BankAccountsApi.Infrastructure;
+﻿using BankAccountsApi.Infrastructure.Results;
+
+namespace BankAccountsApi.Infrastructure.Errors;
 
 /// <summary>
 /// Результат выполнения операции
