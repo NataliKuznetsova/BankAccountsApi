@@ -11,28 +11,37 @@ using System.Collections.Concurrent;
 using System.Text;
 using System.Text.Json;
 using Testcontainers.RabbitMq;
+using Testcontainers.PostgreSql;
 
 namespace BankAccountsApi.Tests.Integration
 {
     /// <summary>
-    /// Интеграционный тест 
+    /// OutboxIntegrationTests
     /// </summary>
     [TestFixture]
     public class OutboxIntegrationTests
     {
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-        private RabbitMqContainer _rabbitMqContainer;
-        private ServiceProvider _serviceProvider;
-        private MessageBus _messageBus;
-        private IOutboxRepository _outboxRepository;
+        private RabbitMqContainer? _rabbitMqContainer;
+        private PostgreSqlContainer? _postgresContainer;
+        private ServiceProvider? _serviceProvider;
+        private MessageBus? _messageBus;
+        private IOutboxRepository? _outboxRepository;
 
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         /// <summary>
-        /// 
+        /// Setup
         /// </summary>
+        /// <returns></returns>
         [OneTimeSetUp]
         public async Task Setup()
         {
+            _postgresContainer = new PostgreSqlBuilder()
+                .WithDatabase("mydb")
+                .WithUsername("postgres")
+                .WithPassword("mypassword")
+                .Build();
+
+            await _postgresContainer.StartAsync();
+
             _rabbitMqContainer = new RabbitMqBuilder()
                 .WithImage("rabbitmq:3.12")
                 .WithUsername("guest")
@@ -49,9 +58,8 @@ namespace BankAccountsApi.Tests.Integration
 
             var services = new ServiceCollection();
 
-            // Используем реальную БД PostgreSQL
             services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql("Host=localhost;Port=5432;Database=mydb;Username=postgres;Password=mypassword"));
+                options.UseNpgsql(_postgresContainer.GetConnectionString()));
 
             services.AddScoped<IOutboxRepository, OutboxRepository>();
 
@@ -66,6 +74,13 @@ namespace BankAccountsApi.Tests.Integration
 
             _serviceProvider = services.BuildServiceProvider();
 
+            // Применяем миграции к БД перед тестами
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                await dbContext.Database.MigrateAsync();
+            }
+
             _outboxRepository = _serviceProvider.GetRequiredService<IOutboxRepository>();
 
             _messageBus = new MessageBus(
@@ -75,9 +90,6 @@ namespace BankAccountsApi.Tests.Integration
             );
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         [OneTimeTearDown]
         public async Task Teardown()
         {
@@ -87,19 +99,21 @@ namespace BankAccountsApi.Tests.Integration
                 await _rabbitMqContainer.DisposeAsync();
             }
 
+            if (_postgresContainer != null)
+            {
+                await _postgresContainer.StopAsync();
+                await _postgresContainer.DisposeAsync();
+            }
+
             if (_serviceProvider != null)
             {
                 await _serviceProvider.DisposeAsync();
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         [Test]
         public async Task OutboxPublishes50Events()
         {
-            // Генерация 50 событий
             var events = new List<OutboxMessage>();
             for (int i = 0; i < 50; i++)
             {
@@ -112,13 +126,12 @@ namespace BankAccountsApi.Tests.Integration
                     CreatedAt = DateTime.UtcNow
                 };
                 events.Add(evt);
-                await _outboxRepository.AddEventAsync(evt.Type, evt);
+                await _outboxRepository?.AddEventAsync(evt.Type, evt)!;
             }
 
-            // Настраиваем подписчика на очередь
             var factory = new ConnectionFactory
             {
-                Uri = new Uri(_rabbitMqContainer.GetConnectionString()),
+                Uri = new Uri(_rabbitMqContainer?.GetConnectionString()!),
                 AutomaticRecoveryEnabled = true
             };
 
@@ -139,26 +152,21 @@ namespace BankAccountsApi.Tests.Integration
                 var payloadElement = envelope.GetProperty("payload");
                 var innerPayloadString = payloadElement.GetProperty("Payload").GetString();
                 var innerPayload = JsonSerializer.Deserialize<JsonElement>(innerPayloadString!);
-
                 var accountId = innerPayload.GetProperty("AccountId").GetGuid();
                 receivedAccountIds.Add(accountId);
             };
 
             channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
 
-            // Публикация всех событий
             await _messageBus.PublishPendingEventsAsync();
 
-            // Ждём, пока придут все 50 сообщений
             var timeout = Task.Delay(5000);
             while (receivedAccountIds.Count < 50 && !timeout.IsCompleted)
             {
                 await Task.Delay(50);
             }
 
-            Assert.That(receivedAccountIds.Count, Is.EqualTo(50), "Не все события были получены");
-
-            // Проверка, что в Outbox больше нет ожидающих событий
+            Assert.That(receivedAccountIds.Count, Is.EqualTo(50));
             var pendingEvents = await _outboxRepository.GetPendingEventsAsync();
             Assert.That(pendingEvents.Count, Is.EqualTo(0));
         }

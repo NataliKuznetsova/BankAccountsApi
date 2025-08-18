@@ -69,10 +69,10 @@ namespace BankAccountsApi.Tests.Integration
         {
             // Arrange
             var client = new Client { Id = Guid.NewGuid(), IsFrozen = false };
-            await _clientsRepository.AddAsync(client);
+            await _clientsRepository?.AddAsync(client)!;
 
             var account = new Account { Id = Guid.NewGuid(), Currency = "RUB", OwnerId = client.Id, IsFrozen = false };
-            await _accountsRepository.CreateAsync(account);
+            await _accountsRepository?.CreateAsync(account)!;
 
             var envelope = new AntifraudConsumer.Envelope
             {
