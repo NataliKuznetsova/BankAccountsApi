@@ -13,12 +13,10 @@ Swagger будет доступен по адресу: `http://localhost/swagger/index.html`
 
 Запуск Docker:
 docker compose up --build
-прогон миграций. сменить хост на localhost и прогнать
-dotnet ef database update
 
 для авторизации:
 user - user
 password - password
 client-secret - secret
 
-при прохождении интеграционного теста сначала запустить докер. потом тест
+при прохождении интеграционного теста сначала запустить докер. потом тест, кроме OutboxIntegrationTests(он может работать без контейнеров по требованию задачи)

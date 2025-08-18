@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQ.Client;
 
-namespace BankAccountsApi.Controllers;
+namespace BankAccountsApi.Infrastructure.Health;
 
 [ApiController]
 [Route("health")]

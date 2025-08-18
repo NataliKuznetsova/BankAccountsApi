@@ -11,10 +11,11 @@ public abstract class MbControllerBase : ControllerBase
         if (!result.IsSuccess)
             return result.Error?.Code switch
             {
-                "validation_error" => BadRequest(result.Error),
-                "not_found" => NotFound(result.Error),
-                "unauthorized" => Unauthorized(result.Error),
-                "internal_error" => StatusCode(StatusCodes.Status500InternalServerError, result.Error),
+                ErrorCodes.ValidationFailed => BadRequest(result.Error),
+                ErrorCodes.NotFound => NotFound(result.Error),
+                ErrorCodes.Unauthorized => Unauthorized(result.Error),
+                ErrorCodes.Conflict => Conflict(result.Error),
+                ErrorCodes.Internal => StatusCode(StatusCodes.Status500InternalServerError, result.Error),
                 _ => BadRequest(result.Error)
             };
         

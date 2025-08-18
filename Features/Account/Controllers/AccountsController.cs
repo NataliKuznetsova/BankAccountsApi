@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BankAccountsApi.Controllers
+namespace BankAccountsApi.Features.Account.Controllers
 {
     /// <summary>
     /// Контроллер для работы со счетами.

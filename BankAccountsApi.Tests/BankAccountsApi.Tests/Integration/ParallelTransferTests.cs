@@ -28,7 +28,6 @@ namespace BankAccountsApi.Tests.Integration
         [OneTimeSetUp]
         public async Task OneTimeSetup()
         {
-            Console.WriteLine("Test started");
             _connectionString = "Host=localhost;Port=5432;Database=mydb;Username=postgres;Password=mypassword";
 
             _factory = new WebApplicationFactory<Program>()
