@@ -1,4 +1,5 @@
-﻿using BankAccountsApi.Models;
+﻿using BankAccountsApi.Features.Account.Enums;
+using BankAccountsApi.Models;
 using BankAccountsApi.Storage.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,5 +43,17 @@ public class AccountsRepository : IAccountsRepository
             _context.Accounts.Remove(account);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public async Task AccrueInterestAsync(Guid accountId)
+    {
+        var sql = "SELECT accrue_interest(@account_id)";
+        await _context.Database.ExecuteSqlRawAsync(sql, new Npgsql.NpgsqlParameter("@p_accountId", accountId));
+    }
+    public async Task<IEnumerable<Account>> GetByTypesAsync(List<AccountType> types)
+    {
+        return await _context.Accounts
+            .Where(x => types.Contains(x.Type))
+            .ToListAsync();
     }
 }

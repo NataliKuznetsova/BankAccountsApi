@@ -1,4 +1,4 @@
-﻿namespace BankAccountsApi.Infrastructure;
+﻿namespace BankAccountsApi.Infrastructure.Results;
 
 /// <summary>
 /// Результат выполнения операции

@@ -3,15 +3,22 @@ using BankAccountsApi.Features.Clients.Queries;
 using BankAccountsApi.Models;
 using BankAccountsApi.Storage.Interfaces;
 using Moq;
+using NUnit.Framework;
 
 namespace BankAccountsApi.Tests.Unit
 {
+    /// <summary>
+    /// Тест на поиск клиента по id
+    /// </summary>
     [TestFixture]
     public class GetClientByIdHandlerTests
     {
         private Mock<IClientsRepository>? _clientRepoMock;
         private GetClientByIdHandler? _handler;
 
+        /// <summary>
+        /// 
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -19,6 +26,9 @@ namespace BankAccountsApi.Tests.Unit
             _handler = new GetClientByIdHandler(_clientRepoMock.Object);
         }
 
+        /// <summary>
+        /// Клиент существует
+        /// </summary>
         [Test]
         public async Task Handle_ClientExists_ReturnsSuccessWithClient()
         {
@@ -30,11 +40,17 @@ namespace BankAccountsApi.Tests.Unit
             var query = new GetClientByIdQuery(clientId);
             var result = await _handler?.Handle(query, CancellationToken.None)!;
 
-            Assert.That(result.IsSuccess, Is.True);
-            Assert.That(result.Value, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.True);
+                Assert.That(result.Value, Is.Not.Null);
+            });
             Assert.That(result.Value?.Id, Is.EqualTo(clientId));
         }
 
+        /// <summary>
+        /// Тест клиент не найден
+        /// </summary>
         [Test]
         public async Task Handle_ClientNotFound_ReturnsNotFound()
         {
@@ -45,8 +61,11 @@ namespace BankAccountsApi.Tests.Unit
             var query = new GetClientByIdQuery(clientId);
             var result = await _handler?.Handle(query, CancellationToken.None)!;
 
-            Assert.That(result.IsSuccess, Is.False);
-            Assert.That(result.Error?.Code, Is.EqualTo("not_found"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.False);
+                Assert.That(result.Error?.Code, Is.EqualTo("not_found"));
+            });
         }
     }
 }

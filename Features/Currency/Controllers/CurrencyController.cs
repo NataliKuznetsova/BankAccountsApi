@@ -1,10 +1,11 @@
 ﻿using BankAccountsApi.Features.Currency.Query;
 using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BankAccountsApi.Controllers;
+namespace BankAccountsApi.Features.Currency.Controllers;
 
 /// <summary>
 /// Контроллер для работы с валютами

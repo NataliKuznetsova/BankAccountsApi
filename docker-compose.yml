@@ -31,6 +31,20 @@
     container_name: keycloak
     restart: always
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"     
+      - "15672:15672"   
+    environment:
+      RABBITMQ_DEFAULT_USER: user111
+      RABBITMQ_DEFAULT_PASS: user111
+      RABBITMQ_LOAD_DEFINITIONS: /rabbitmq/definitions.json
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    restart: unless-stopped
+
   bank-accounts-api:
     build:
       context: .
@@ -41,13 +55,19 @@
     depends_on:
       - keycloak
       - postgres
+      - rabbitmq
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
       ASPNETCORE_URLS: http://+:80
+      ASPNETCORE_ENVIRONMENT: LocalDocker 
       ConnectionStrings__DbConnection: "Host=postgres;Port=5432;Database=mydb;Username=postgres;Password=mypassword"
       Authentication__Authority: "http://keycloak:8080/realms/bank-accounts-realm"
       Authentication__Audience: "bank-accounts-api"
+      RabbitMQ__Endpoint: "rabbitmq:5672"
+      RabbitMQ__UserName: "user111"
+      RabbitMQ__Password: "user111"
 
 volumes:
   pgdata:
+  rabbitmqdata:

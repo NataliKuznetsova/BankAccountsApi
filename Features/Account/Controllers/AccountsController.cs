@@ -1,12 +1,13 @@
 ﻿using BankAccountsApi.Features.Account.Commands;
 using BankAccountsApi.Features.Account.Queries;
 using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BankAccountsApi.Controllers
+namespace BankAccountsApi.Features.Account.Controllers
 {
     /// <summary>
     /// Контроллер для работы со счетами.
@@ -36,9 +37,9 @@ namespace BankAccountsApi.Controllers
         /// <param name="accountId">Id счёта</param>
         /// <returns>Счёт клиента</returns>
         [HttpGet("{accountId:guid}")]
-        [ProducesResponseType(typeof(MbResult<Account>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(MbResult<Account>), StatusCodes.Status404NotFound)]
-        public async Task<MbResult<Account>> GetAccountById(Guid accountId)
+        [ProducesResponseType(typeof(MbResult<Models.Account>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(MbResult<Models.Account>), StatusCodes.Status404NotFound)]
+        public async Task<MbResult<Models.Account>> GetAccountById(Guid accountId)
         {
             return await mediator.Send(new GetAccountByIdQuery(accountId));
         }
@@ -61,8 +62,8 @@ namespace BankAccountsApi.Controllers
         /// <param name="ownerId">Идентификатор пользователя</param>
         /// <returns>Список счетов</returns>
         [HttpGet("{ownerId:guid}/all")]
-        [ProducesResponseType(typeof(MbResult<List<Account>>), StatusCodes.Status200OK)]
-        public async Task<MbResult<List<Account>>> GetAccounts(Guid ownerId)
+        [ProducesResponseType(typeof(MbResult<List<Models.Account>>), StatusCodes.Status200OK)]
+        public async Task<MbResult<List<Models.Account>>> GetAccounts(Guid ownerId)
         {
             var query = new GetAccountsQuery { OwnerId = ownerId };
             return await mediator.Send(query);
@@ -93,6 +94,29 @@ namespace BankAccountsApi.Controllers
         public async Task<MbResult<bool>> HasAccount(Guid ownerId)
         {
             return await mediator.Send(new HasAccountByOwnerIdQuery(ownerId));
+        }
+        /// <summary>
+        /// Открытие нового вклада
+        /// </summary>
+        /// <param name="command">Данные для открытия вклада</param>
+        /// <returns>Идентификатор созданного вклада</returns>
+        [HttpPost("deposit/create")]
+        [ProducesResponseType(typeof(MbResult<Guid>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(MbResult<Guid>), StatusCodes.Status400BadRequest)]
+        public async Task<MbResult<Guid>> CreateDeposit([FromBody] CreateDepositCommand command)
+        {
+            return await mediator.Send(command);
+        }
+
+        /// <summary>
+        /// Закрытие вклада с начислением процентов
+        /// </summary>
+        /// <param name="command">Данные для закрытия вклада</param>
+        [HttpPost("deposit/close")]
+        [ProducesResponseType(typeof(MbResult<object>), StatusCodes.Status200OK)]
+        public async Task<MbResult<Unit>> CloseDeposit([FromBody] CloseDepositCommand command)
+        {
+            return await mediator.Send(command);
         }
     }
 }

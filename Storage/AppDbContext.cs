@@ -10,6 +10,9 @@ namespace BankAccountsApi.Storage
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Currency> Currency { get; set; }
+        public DbSet<OutboxMessage> OutboxMessages { get; set; }
+        public DbSet<InboxConsumed> InboxConsumed { get; set; }
+        public DbSet<InboxDeadLetter> InboxDeadLetter { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 

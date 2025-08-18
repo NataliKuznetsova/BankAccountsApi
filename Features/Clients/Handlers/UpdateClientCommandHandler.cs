@@ -1,5 +1,5 @@
 ﻿using BankAccountsApi.Features.Clients.Commands;
-using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Models;
 using BankAccountsApi.Storage.Interfaces;
 using MediatR;
@@ -12,7 +12,7 @@ public class UpdateClientCommandHandler(IClientsRepository storage) : IRequestHa
     {
         var existingClient = await storage.GetByIdAsync(request.Id);
         if (existingClient == null)
-            return MbResult.Failure(MbError.NotFound($"Клиент с Id {request.Id} не найден"));
+            return MbResult.Failure<Unit>(MbError.NotFound($"Клиент с Id {request.Id} не найден"));
 
         var updatedClient = new Client
         {

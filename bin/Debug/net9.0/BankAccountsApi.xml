@@ -56,6 +56,19 @@
             <param name="ownerId">Идентификатор клиента</param>
             <returns>Результат проверки</returns>
         </member>
+        <member name="M:BankAccountsApi.Controllers.AccountsController.CreateDeposit(BankAccountsApi.Features.Account.Commands.CreateDepositCommand)">
+            <summary>
+            Открытие нового вклада
+            </summary>
+            <param name="command">Данные для открытия вклада</param>
+            <returns>Идентификатор созданного вклада</returns>
+        </member>
+        <member name="M:BankAccountsApi.Controllers.AccountsController.CloseDeposit(BankAccountsApi.Features.Account.Commands.CloseDepositCommand)">
+            <summary>
+            Закрытие вклада с начислением процентов
+            </summary>
+            <param name="command">Данные для закрытия вклада</param>
+        </member>
         <member name="T:BankAccountsApi.Controllers.ClientsController">
             <summary>
             Контроллер для работы с клиентами
@@ -135,9 +148,29 @@
             <param name="command">Данные транзакции</param>
             <returns>Идентификатор транзакции</returns>
         </member>
+        <member name="T:BankAccountsApi.Features.Account.Commands.CloseDepositCommand">
+            <summary>
+            Команда для закрытия депозитного счёта и начисления процентов
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Account.Commands.CloseDepositCommand.DepositId">
+            <summary>
+            Идентификатор депозитного счёта
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Features.Account.Commands.CloseDepositCommand.ManagerId">
+            <summary>
+            Идентификатор сотрудника
+            </summary>
+        </member>
         <member name="T:BankAccountsApi.Features.Account.Commands.CreateAccountCommand">
             <summary>
             Команда для создания нового счета
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Commands.CreateDepositCommand">
+            <summary>
+            Команда для открытия нового вклада
             </summary>
         </member>
         <member name="P:BankAccountsApi.Features.Account.Commands.DeleteAccountCommand.Id">
@@ -155,14 +188,34 @@
             Тип счёта
             </summary>
         </member>
+        <member name="T:BankAccountsApi.Features.Account.Handlers.CloseDepositHandler">
+            <summary>
+            Хэндлер для закрытия депозита с начислением процентов
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Features.Account.Handlers.CloseDepositHandler.#ctor(BankAccountsApi.Storage.Interfaces.IAccountsRepository)">
+            <summary>
+            Хэндлер для закрытия депозита с начислением процентов
+            </summary>
+        </member>
         <member name="T:BankAccountsApi.Features.Account.Handlers.CreateAccountHandler">
             <summary>
             Хэндлер для создания счета
             </summary>
         </member>
-        <member name="M:BankAccountsApi.Features.Account.Handlers.CreateAccountHandler.#ctor(BankAccountsApi.Storage.Interfaces.IAccountsRepository,BankAccountsApi.Storage.Interfaces.IClientsRepository)">
+        <member name="M:BankAccountsApi.Features.Account.Handlers.CreateAccountHandler.#ctor(BankAccountsApi.Storage.Interfaces.IAccountsRepository,BankAccountsApi.Storage.Interfaces.IClientsRepository,BankAccountsApi.Storage.Interfaces.IOutboxRepository,BankAccountsApi.Storage.AppDbContext)">
             <summary>
             Хэндлер для создания счета
+            </summary>
+        </member>
+        <member name="T:BankAccountsApi.Features.Account.Handlers.CreateDepositHandler">
+            <summary>
+            Хэндлер для открытия нового депозитного счёта.
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Features.Account.Handlers.CreateDepositHandler.#ctor(BankAccountsApi.Storage.Interfaces.IAccountsRepository,BankAccountsApi.Storage.Interfaces.IClientsRepository)">
+            <summary>
+            Хэндлер для открытия нового депозитного счёта.
             </summary>
         </member>
         <member name="T:BankAccountsApi.Features.Account.Handlers.GetAccountByIdHandler">
@@ -315,36 +368,36 @@
             Валидация перевода денег
             </summary>
         </member>
-        <member name="T:BankAccountsApi.Infrastructure.MbError">
-            <summary>
-            Ошибка
-            </summary>
-        </member>
-        <member name="M:BankAccountsApi.Infrastructure.MbError.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Ошибка
-            </summary>
-        </member>
-        <member name="P:BankAccountsApi.Infrastructure.MbError.Code">
-            <summary>
-            Код ошибки
-            </summary>
-        </member>
-        <member name="P:BankAccountsApi.Infrastructure.MbError.Field">
-            <summary>
-            Поле с ошибкой
-            </summary>
-        </member>
-        <member name="P:BankAccountsApi.Infrastructure.MbError.Message">
-            <summary>
-            Сообщение
-            </summary>
-        </member>
-        <member name="T:BankAccountsApi.Infrastructure.MbResult`1">
+        <member name="T:BankAccountsApi.Infrastructure.Errors.MbResult`1">
             <summary>
             Результат выполнения операции
             </summary>
             <typeparam name="T">Тип возвращаемого значения</typeparam>
+        </member>
+        <member name="T:BankAccountsApi.Infrastructure.Results.MbError">
+            <summary>
+            Ошибка
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Infrastructure.Results.MbError.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Ошибка
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Infrastructure.Results.MbError.Code">
+            <summary>
+            Код ошибки
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Infrastructure.Results.MbError.Field">
+            <summary>
+            Поле с ошибкой
+            </summary>
+        </member>
+        <member name="P:BankAccountsApi.Infrastructure.Results.MbError.Message">
+            <summary>
+            Сообщение
+            </summary>
         </member>
         <member name="T:BankAccountsApi.Migrations.InitialCreate">
             <inheritdoc />
@@ -376,9 +429,6 @@
         <member name="M:BankAccountsApi.Migrations.AddAccrueInterestProcedure.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:BankAccountsApi.Migrations.AddAccrueInterestProcedure.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
         <member name="M:BankAccountsApi.Migrations.AddAccrueInterestProcedure.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
@@ -392,6 +442,42 @@
             <inheritdoc />
         </member>
         <member name="M:BankAccountsApi.Migrations.AddNew.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BankAccountsApi.Migrations.AddOutboxMessages">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddOutboxMessages.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddOutboxMessages.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddOutboxMessages.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BankAccountsApi.Migrations.NewFieldsTask4">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.NewFieldsTask4.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.NewFieldsTask4.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.NewFieldsTask4.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BankAccountsApi.Migrations.AddNewChanges">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddNewChanges.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddNewChanges.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BankAccountsApi.Migrations.AddNewChanges.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:BankAccountsApi.Models.Account">
@@ -447,6 +533,11 @@
         <member name="M:BankAccountsApi.Storage.Interfaces.IAccountsRepository.DeleteAsync(System.Guid)">
             <summary>
             Удалить счёт по идентификатору
+            </summary>
+        </member>
+        <member name="M:BankAccountsApi.Storage.Interfaces.IAccountsRepository.AccrueInterestAsync(System.Guid)">
+            <summary>
+            Начисляет проценты по депозиту
             </summary>
         </member>
         <member name="T:BankAccountsApi.Storage.Interfaces.IClientsRepository">

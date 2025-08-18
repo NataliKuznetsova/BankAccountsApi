@@ -5,6 +5,7 @@ namespace BankAccountsApi.Models;
 
 public class Transaction
 {
+    [Key]
     public Guid Id { get; set; }
     
     public Guid AccountId { get; set; }
@@ -20,4 +21,5 @@ public class Transaction
     public string? Description { get; set; }
 
     public DateTime Date { get; set; }
+    public Guid TransferId { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿using BankAccountsApi.Infrastructure;
+﻿using BankAccountsApi.Infrastructure.Results;
 using MediatR;
 
 namespace BankAccountsApi.Features.Clients.Queries;

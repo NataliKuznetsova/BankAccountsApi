@@ -1,12 +1,13 @@
 ﻿using BankAccountsApi.Features.Clients.Commands;
 using BankAccountsApi.Features.Clients.Queries;
 using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BankAccountsApi.Controllers;
+namespace BankAccountsApi.Features.Clients.Controllers;
 
 /// <summary>
 /// Контроллер для работы с клиентами

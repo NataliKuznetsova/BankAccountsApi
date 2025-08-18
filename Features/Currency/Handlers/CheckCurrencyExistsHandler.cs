@@ -1,5 +1,5 @@
 ﻿using BankAccountsApi.Features.Currency.Query;
-using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Storage.Interfaces;
 using MediatR;
 

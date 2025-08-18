@@ -2,26 +2,49 @@
 using BankAccountsApi.Features.Account.Enums;
 using BankAccountsApi.Features.Account.Handlers;
 using BankAccountsApi.Models;
+using BankAccountsApi.Storage;
 using BankAccountsApi.Storage.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Moq;
+using NUnit.Framework;
 
 namespace BankAccountsApi.Tests.Unit
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestFixture]
     public class CreateAccountHandlerTests
     {
         private Mock<IAccountsRepository>? _accountRepoMock;
         private Mock<IClientsRepository>? _clientRepoMock;
+        private Mock<IOutboxRepository>? _outboxRepositoryMock;
         private CreateAccountHandler? _handler;
 
+        /// <summary>
+        /// 
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             _accountRepoMock = new Mock<IAccountsRepository>();
             _clientRepoMock = new Mock<IClientsRepository>();
-            _handler = new CreateAccountHandler(_accountRepoMock.Object, _clientRepoMock.Object);
+            _outboxRepositoryMock = new Mock<IOutboxRepository>();
+
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning))
+                .Options;
+
+            var context = new AppDbContext(options);
+
+            _handler = new CreateAccountHandler(_accountRepoMock.Object, _clientRepoMock.Object, _outboxRepositoryMock.Object, context);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task Handle_ClientExists_CreatesAccountAndReturnsSuccess()
         {
@@ -39,8 +62,11 @@ namespace BankAccountsApi.Tests.Unit
 
             var result = await _handler?.Handle(command, CancellationToken.None)!;
 
-            Assert.That(result.IsSuccess, Is.True);
-            Assert.That(result.Value, Is.Not.EqualTo(Guid.Empty));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.True);
+                Assert.That(result.Value, Is.Not.EqualTo(Guid.Empty));
+            });
             _accountRepoMock?.Verify(a => a.CreateAsync(It.Is<Account>(acc =>
                 acc.OwnerId == ownerId &&
                 acc.Type == command.Type &&
@@ -49,6 +75,9 @@ namespace BankAccountsApi.Tests.Unit
                 acc.Balance == 0)), Times.Once);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public async Task Handle_ClientDoesNotExist_ReturnsNotFound()
         {
@@ -65,8 +94,11 @@ namespace BankAccountsApi.Tests.Unit
 
             var result = await _handler?.Handle(command, CancellationToken.None)!;
 
-            Assert.That(result.IsSuccess, Is.False);
-            Assert.That(result.Error?.Code, Is.EqualTo("not_found"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.False);
+                Assert.That(result.Error?.Code, Is.EqualTo("not_found"));
+            });
             _accountRepoMock?.Verify(a => a.CreateAsync(It.IsAny<Account>()), Times.Never);
         }
     }

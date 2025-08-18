@@ -1,12 +1,13 @@
 ﻿using BankAccountsApi.Features.Transactions.Commands;
 using BankAccountsApi.Features.Transactions.Queries;
 using BankAccountsApi.Infrastructure;
+using BankAccountsApi.Infrastructure.Results;
 using BankAccountsApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BankAccountsApi.Controllers;
+namespace BankAccountsApi.Features.Transactions.Controllers;
 
 [ApiController]
 [Route("transactions")]

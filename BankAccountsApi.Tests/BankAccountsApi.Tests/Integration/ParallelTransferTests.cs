@@ -1,4 +1,7 @@
-﻿using BankAccountsApi.Features.Transactions.Commands;
+﻿using BankAccountsApi.Behaviors;
+using BankAccountsApi.Features.Transactions.Commands;
+using BankAccountsApi.Storage;
+using BankAccountsApi.Storage.Interfaces;
 using Dapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -6,12 +9,15 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
+using NUnit.Framework;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using BankAccountsApi.Behaviors;
 
 namespace BankAccountsApi.Tests.Integration
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestFixture]
     public class ParallelTransferTests
     {
@@ -22,10 +28,12 @@ namespace BankAccountsApi.Tests.Integration
         private Guid _accountFromId;
         private Guid _accountToId;
 
+        /// <summary>
+        /// Setup
+        /// </summary>
         [OneTimeSetUp]
         public async Task OneTimeSetup()
         {
-            Console.WriteLine("Test started");
             _connectionString = "Host=localhost;Port=5432;Database=mydb;Username=postgres;Password=mypassword";
 
             _factory = new WebApplicationFactory<Program>()
@@ -33,7 +41,7 @@ namespace BankAccountsApi.Tests.Integration
                 {
                     x.ConfigureAppConfiguration((_, config) =>
                     {
-                        config.AddJsonFile("BankAccountsApi.Tests\\BankAccountsApi.Tests\\appsettings.Test.json");
+                        config.AddJsonFile("appsettings.Test.json", optional: false);
                     });
 
                     x.ConfigureTestServices(services =>
@@ -41,6 +49,10 @@ namespace BankAccountsApi.Tests.Integration
                         services.AddAuthentication("TestScheme")
                                 .AddScheme<AuthenticationSchemeOptions, AuthTestHandler>(
                                     "TestScheme", _ => { });
+                        services.AddScoped<IInboxRepository, InboxRepository>();
+                        services.AddScoped<IInboxDeadLetterRepository, InboxDeadLetterRepository>();
+
+                        services.AddScoped<IOutboxRepository, OutboxRepository>();
                     });
                 });
 
@@ -97,6 +109,9 @@ namespace BankAccountsApi.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// 50 параллельных переводов
+        /// </summary>
         [Test]
         public async Task Transfer_50ParallelRequests_TotalBalanceIsPreserved()
         {
@@ -140,6 +155,9 @@ namespace BankAccountsApi.Tests.Integration
                 new { From = _accountFromId, To = _accountToId });
         }
 
+        /// <summary>
+        /// TearDown
+        /// </summary>
         [OneTimeTearDown]
         public void TearDown()
         {
